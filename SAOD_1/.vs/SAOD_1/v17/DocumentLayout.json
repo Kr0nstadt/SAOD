@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "SAOD_1\\FileWork.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\FileWork.cs",
               "RelativeToolTip": "SAOD_1\\FileWork.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAAAC4AAABBAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAqwG8AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T15:01:46.436Z",
               "EditorCaption": ""
@@ -79,8 +79,7 @@
               "RelativeToolTip": "SAOD_1\\FixedVariable.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAgAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T13:11:01.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T13:11:01.668Z"
             },
             {
               "$type": "Document",
@@ -92,8 +91,7 @@
               "RelativeToolTip": "SAOD_1\\Program.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAQwCIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T12:34:43.276Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T12:34:43.276Z"
             }
           ]
         }

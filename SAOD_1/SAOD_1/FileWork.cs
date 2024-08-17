@@ -10,41 +10,51 @@ namespace SAOD_1
     {
         public FileWork()
         {
-            string partOriginal = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\Original.txt";
-            string GenerationOriginal = "";
+            string partOriginal = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\Original.bin";
+            List<int> GenerationOriginal = new List<int>();
             Random random = new Random();
             for(int i = 0; i < 300; i++)
             {
-                GenerationOriginal += random.Next(1, 99).ToString() + " ";
+                GenerationOriginal.Add(random.Next(1, 99));
             }
-
-            File.WriteAllText(partOriginal, GenerationOriginal);
+            using (BinaryWriter writer = new BinaryWriter(File.Open(partOriginal, FileMode.Create)))
+            {
+                writer.Write(ConvertIntListToByteArray(GenerationOriginal));
+            }
             _memoryOriginal = GetFileSize(partOriginal);
             List<int> number = ReadNumbersFromFile(partOriginal);
 
-            string partFixedVariable = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\FixedVariable.txt";
+            string partFixedVariable = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\FixedVariable.bin";
             string GeneretionFixedVariable = "";
-            for(int i = 0;i < number.Count;i++)
+            using (BinaryWriter write = new BinaryWriter(File.Open(partFixedVariable, FileMode.Create)))
             {
-                GeneretionFixedVariable += new FixedVariable(i).Result ;
+                for (int i = 0; i < number.Count; i++)
+                {
+                    write.Write(ConvertBinaryStringToByteArray(new FixedVariable(number[i]).Result));
+                }
             }
-            File.WriteAllText(partFixedVariable, GeneretionFixedVariable);
             _memoryFixedVariable = GetFileSize(partFixedVariable);
 
-            string partGammaElias = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\GammaElias.txt";
+            string partGammaElias = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\GammaElias.bin";
             string GeneretionGammaElias = "";
-            for (int i = 0; i < number.Count; i++)
+            using (BinaryWriter write = new BinaryWriter(File.Open(partGammaElias, FileMode.Create)))
             {
-                GeneretionGammaElias += new GammaElias(i).Result;
+                for (int i = 0; i < number.Count; i++)
+                {
+                    write.Write(ConvertBinaryStringToByteArray(new GammaElias(number[i]).Result));
+                }
             }
             File.WriteAllText(partGammaElias, GeneretionGammaElias);
             _memoryGammaElias = GetFileSize(partGammaElias);
 
-            string partOmegaElias = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\OmegaElias.txt";
+            string partOmegaElias = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\OmegaElias.bin";
             string GeneretionOmegaElias = "";
-            for (int i = 0; i < number.Count; i++)
+            using (BinaryWriter write = new BinaryWriter(File.Open(partOmegaElias, FileMode.Create)))
             {
-                GeneretionOmegaElias += new OmegaElias(i).Result ;
+                for (int i = 0; i < number.Count; i++)
+                {
+                    write.Write(ConvertBinaryStringToByteArray(new OmegaElias(number[i]).Result));
+                }
             }
             File.WriteAllText(partOmegaElias, GeneretionOmegaElias);
             _memoryOmegaElias = GetFileSize(partOmegaElias);
@@ -90,6 +100,41 @@ namespace SAOD_1
             }
 
             return numbers;
+        }
+        private byte[] ConvertBinaryStringToByteArray(string binaryString)
+        {
+            int length = binaryString.Length;         
+            List<byte> bytes = new List<byte>();
+
+            for (int i = 0; i < length; i += 8)
+            {
+                string byteString = binaryString.Substring(i, 8);
+                byte b = Convert.ToByte(byteString, 2);
+                bytes.Add(b);
+            }
+
+            return bytes.ToArray(); 
+        }
+
+        private byte[] ConvertIntListToByteArray(List<int> intList)
+        {
+            // Проверка на наличие значений вне диапазона
+            foreach (int value in intList)
+            {
+                if (value < 0 || value > 255)
+                {
+                    throw new ArgumentOutOfRangeException("Все значения должны быть в диапазоне от 0 до 255.");
+                }
+            }
+
+            // Преобразование списка целых чисел в массив байтов
+            byte[] byteArray = new byte[intList.Count];
+            for (int i = 0; i < intList.Count; i++)
+            {
+                byteArray[i] = (byte)intList[i]; // Приведение типа к байту
+            }
+
+            return byteArray; // Возвращаем массив байтов
         }
     }
 }
