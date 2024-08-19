@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "BinaryTrea/1.0.0": {
+        "runtime": {
+          "BinaryTrea.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BinaryTrea/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

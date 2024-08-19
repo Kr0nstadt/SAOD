@@ -1,0 +1,15 @@
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\bin\Debug\net8.0\BinaryTrea.exe
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\bin\Debug\net8.0\BinaryTrea.deps.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\bin\Debug\net8.0\BinaryTrea.runtimeconfig.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\bin\Debug\net8.0\BinaryTrea.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\bin\Debug\net8.0\BinaryTrea.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.AssemblyInfoInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.AssemblyInfo.cs
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.csproj.CoreCompileInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.sourcelink.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\refint\BinaryTrea.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\BinaryTrea.genruntimeconfig.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\Построение двоичного дерева. Вычисление характеристик дерева\BinaryTrea\BinaryTrea\obj\Debug\net8.0\ref\BinaryTrea.dll

@@ -1,0 +1,15 @@
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\bin\Debug\net8.0\ISDP_and_SDP.exe
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\bin\Debug\net8.0\ISDP_and_SDP.deps.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\bin\Debug\net8.0\ISDP_and_SDP.runtimeconfig.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\bin\Debug\net8.0\ISDP_and_SDP.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\bin\Debug\net8.0\ISDP_and_SDP.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.AssemblyInfoInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.AssemblyInfo.cs
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.csproj.CoreCompileInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.sourcelink.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\refint\ISDP_and_SDP.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ISDP_and_SDP.genruntimeconfig.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(2)Построение случайного дерева поиска и идеально сбалансированного\ISDP_and_SDP\ISDP_and_SDP\obj\Debug\net8.0\ref\ISDP_and_SDP.dll

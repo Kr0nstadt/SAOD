@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ISDP_and_SDP/1.0.0": {
+        "runtime": {
+          "ISDP_and_SDP.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ISDP_and_SDP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
