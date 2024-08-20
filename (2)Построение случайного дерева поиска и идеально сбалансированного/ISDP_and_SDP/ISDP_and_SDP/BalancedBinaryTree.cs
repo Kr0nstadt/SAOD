@@ -42,7 +42,29 @@ namespace ISDP_and_SDP
 
         public double AverageHeight()
         {
-            return (double)Height(Root) / CountNodes(Root);
+            int totalHeight = 0;
+            int branchCount = 0;
+
+            CalculateHeight(Root, 1, ref totalHeight, ref branchCount);
+
+            return branchCount == 0 ? 0 : (double)totalHeight / branchCount;
+        }
+
+        private void CalculateHeight(BalancedNode node, int currentHeight, ref int totalHeight, ref int branchCount)
+        {
+            if (node == null)
+                return;
+
+            // Если это листовой узел
+            if (node.Left == null && node.Right == null)
+            {
+                totalHeight += currentHeight; // Суммируем высоту
+                branchCount++; // Увеличиваем счетчик ветвей
+            }
+
+            // Рекурсивно проходим влево и вправо
+            CalculateHeight(node.Left, currentHeight + 1, ref totalHeight, ref branchCount);
+            CalculateHeight(node.Right, currentHeight + 1, ref totalHeight, ref branchCount);
         }
 
         public int Height(BalancedNode node)

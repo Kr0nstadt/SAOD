@@ -65,13 +65,34 @@ namespace BinaryTrea
         return 1 + Math.Max(HeightRecursive(node.Left), HeightRecursive(node.Right));
     }
 
-    // Вычисление средней высоты дерева
-    public double AverageHeight()
-    {
-        int totalHeight = TotalHeight(Root, 1);
-        int size = Size();
-        return size > 0 ? (double)totalHeight / size : 0;
-    }
+        // Вычисление средней высоты дерева
+        public double AverageHeight()
+        {
+            int totalHeight = 0;
+            int branchCount = 0;
+
+            CalculateHeight(Root, 1, ref totalHeight, ref branchCount);
+
+            return branchCount == 0 ? 0 : (double)totalHeight / branchCount;
+        }
+
+        private void CalculateHeight(Node node, int currentHeight, ref int totalHeight, ref int branchCount)
+        {
+            if (node == null)
+                return;
+
+            // Если это листовой узел
+            if (node.Left == null && node.Right == null)
+            {
+                totalHeight += currentHeight; // Суммируем высоту
+                branchCount++; // Увеличиваем счетчик ветвей
+            }
+
+            // Рекурсивно проходим влево и вправо
+            CalculateHeight(node.Left, currentHeight + 1, ref totalHeight, ref branchCount);
+            CalculateHeight(node.Right, currentHeight + 1, ref totalHeight, ref branchCount);
+        }
+    
 
     private int TotalHeight(Node node, int currentHeight)
     {

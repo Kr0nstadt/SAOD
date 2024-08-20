@@ -42,27 +42,27 @@ class Program
 
         Console.WriteLine("   N   | Средняя высота СДП | Средняя высота ИСДП ");
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine($"  10   |\t{GetHeightRandom(10)}\t    |\t{GetHeightBalance(10)}  ");
-        Console.WriteLine($"  50   |\t{GetHeightRandom(50)}\t    |\t{GetHeightBalance(50)}  ");
-        Console.WriteLine($"  100  |\t{GetHeightRandom(100)}\t    |\t{GetHeightBalance(100)}  ");
-        Console.WriteLine($"  200  |\t{GetHeightRandom(200)}\t    |\t{GetHeightBalance(200)}  ");
-        Console.WriteLine($"  400  |\t{GetHeightRandom(400)}\t    |\t{GetHeightBalance(400)}  ");
+        Console.WriteLine($"  10   |\t{GetHeightRandom(10):F2}\t    |\t{GetHeightBalance(10)}  ");
+        Console.WriteLine($"  50   |\t{GetHeightRandom(50):F2}\t    |\t{GetHeightBalance(50)}  ");
+        Console.WriteLine($"  100  |\t{GetHeightRandom(100):F2}\t    |\t{GetHeightBalance(100)}  ");
+        Console.WriteLine($"  200  |\t{GetHeightRandom(200):F2}\t    |\t{GetHeightBalance(200)}  ");
+        Console.WriteLine($"  400  |\t{GetHeightRandom(400):F2}\t    |\t{GetHeightBalance(400)}  ");
 
-        Console.WriteLine("\n\nСравнение трудоемкостей поиска на 300 узлах\n");
+        Console.WriteLine("\n\nСравнение трудоемкостей поиска на 500 узлах\n");
         Console.WriteLine("  Нашло ? |\tСДП\t|\tИСДТ\t|   Высота СДП  |\tВысота ИСДТ");
         Console.WriteLine("---------------------------------------------------------------------------");
 
         RandomBinaryTree  rnTrue = new RandomBinaryTree();
-        rnTrue.Add(GenerateArray(300));
+        rnTrue.Add(GenerateArray(500));
         BalancedBinaryTree bTrue = new BalancedBinaryTree();
-        bTrue.Add(GenerateArray(300));
+        bTrue.Add(GenerateArray(500));
         bTrue.Search(45);
        
         Console.WriteLine($"   {rnTrue.Search(45)}   |\t{rnTrue.SearchCount}\t|\t {bTrue.SearchCount}\t|\t{rnTrue.Height(rnTrue.Root)}\t|\t{bTrue.Height(bTrue.Root)}");
         RandomBinaryTree rnFalse = new RandomBinaryTree();
-        rnFalse.Add(GenerateArray(300));
+        rnFalse.Add(GenerateArray(500));
         BalancedBinaryTree bFalse = new BalancedBinaryTree();
-        bFalse.Add(GenerateArray(300));
+        bFalse.Add(GenerateArray(500));
         bFalse.Search(-1);
 
         Console.WriteLine($"   {rnFalse.Search(-1)}  |\t{rnFalse.SearchCount}\t|\t {bFalse.SearchCount}\t|\t{rnTrue.Height(rnFalse.Root)}\t|\t{bFalse.Height(bTrue.Root)}");
