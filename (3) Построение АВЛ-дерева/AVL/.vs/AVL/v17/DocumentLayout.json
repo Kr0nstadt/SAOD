@@ -35,8 +35,7 @@
               "ViewState": "AQIAAKoAAAAAAAAAAAAmwAsAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-20T16:05:42.834Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -46,7 +45,7 @@
               "RelativeDocumentMoniker": "AVL\\Program.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\(3) \u041F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 \u0410\u0412\u041B-\u0434\u0435\u0440\u0435\u0432\u0430\\AVL\\AVL\\Program.cs",
               "RelativeToolTip": "AVL\\Program.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAQwCsAAAAVAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwCoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-20T15:55:57.253Z",
               "EditorCaption": ""
@@ -61,8 +60,7 @@
               "RelativeToolTip": "AVL\\AVLTreeNode.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-20T16:04:50.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-20T16:04:50.311Z"
             }
           ]
         }

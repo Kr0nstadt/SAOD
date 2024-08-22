@@ -39,9 +39,8 @@ class Program
     public static int PopaMtravia(int n)
     {
         AVLTree aVLTree = new AVLTree();
-        aVLTree.GenerateRandomTree(n);
         int bef = aVLTree.RotationCount;
-        aVLTree.Add(7);
+        aVLTree.GenerateRandomTree(n);
         int aft = aVLTree.RotationCount;
         return aft - bef;
     }

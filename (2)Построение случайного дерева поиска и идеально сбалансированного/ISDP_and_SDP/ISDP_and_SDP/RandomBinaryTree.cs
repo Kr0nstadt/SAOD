@@ -113,16 +113,20 @@ namespace ISDP_and_SDP
             return IsBSTUtil(node.Left, min, node.Value - 1) && IsBSTUtil(node.Right, node.Value + 1, max);
         }
 
-        public bool Search(int key)
+        public RandomNode Search(int key)
         {
             return SearchNode(Root, key);
         }
 
-        private bool SearchNode(RandomNode node, int key)
+        private RandomNode SearchNode(RandomNode node, int key)
         {
-            if (node == null) return false;
-            if (node.Value == key) return true;
-            SearchCount = 1;
+            if (node == null)
+            {
+                SearchCount++;
+                return new RandomNode(-1);
+            }
+            if (node.Value == key) { SearchCount++; return node; }
+            SearchCount++;
             return key < node.Value ? SearchNode(node.Left, key) : SearchNode(node.Right, key);
         }
 

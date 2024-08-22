@@ -1,0 +1,15 @@
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\bin\Debug\net8.0\A1andA2.exe
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\bin\Debug\net8.0\A1andA2.deps.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\bin\Debug\net8.0\A1andA2.runtimeconfig.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\bin\Debug\net8.0\A1andA2.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\bin\Debug\net8.0\A1andA2.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.AssemblyInfoInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.AssemblyInfo.cs
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.csproj.CoreCompileInputs.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.sourcelink.json
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\refint\A1andA2.dll
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.pdb
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\A1andA2.genruntimeconfig.cache
+C:\Users\karpo\OneDrive\Рабочий стол\SAOD\(5)Построение дерева почти оптимального поиска\A1andA2\A1andA2\obj\Debug\net8.0\ref\A1andA2.dll

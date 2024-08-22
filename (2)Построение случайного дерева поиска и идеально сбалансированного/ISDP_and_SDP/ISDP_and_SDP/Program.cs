@@ -48,7 +48,7 @@ class Program
         Console.WriteLine($"  200  |\t{GetHeightRandom(200):F2}\t    |\t{GetHeightBalance(200)}  ");
         Console.WriteLine($"  400  |\t{GetHeightRandom(400):F2}\t    |\t{GetHeightBalance(400)}  ");
 
-        Console.WriteLine("\n\nСравнение трудоемкостей поиска на 500 узлах\n");
+        Console.WriteLine("\n\nСравнение трудоемкостей поиска на 500 узлах, ключ 45\n");
         Console.WriteLine("  Нашло ? |\tСДП\t|\tИСДТ\t|   Высота СДП  |\tВысота ИСДТ");
         Console.WriteLine("---------------------------------------------------------------------------");
 
@@ -58,14 +58,14 @@ class Program
         bTrue.Add(GenerateArray(500));
         bTrue.Search(45);
        
-        Console.WriteLine($"   {rnTrue.Search(45)}   |\t{rnTrue.SearchCount}\t|\t {bTrue.SearchCount}\t|\t{rnTrue.Height(rnTrue.Root)}\t|\t{bTrue.Height(bTrue.Root)}");
+        Console.WriteLine($"   {rnTrue.Search(45).Value}   |\t{rnTrue.SearchCount}\t|\t {bTrue.SearchCount}\t|\t{rnTrue.Height(rnTrue.Root)}\t|\t{bTrue.Height(bTrue.Root)}");
         RandomBinaryTree rnFalse = new RandomBinaryTree();
         rnFalse.Add(GenerateArray(500));
         BalancedBinaryTree bFalse = new BalancedBinaryTree();
         bFalse.Add(GenerateArray(500));
         bFalse.Search(-1);
 
-        Console.WriteLine($"   {rnFalse.Search(-1)}  |\t{rnFalse.SearchCount}\t|\t {bFalse.SearchCount}\t|\t{rnTrue.Height(rnFalse.Root)}\t|\t{bFalse.Height(bTrue.Root)}");
+        Console.WriteLine($"   {rnFalse.Search(-1).Value}  |\t{rnFalse.SearchCount}\t|\t {bFalse.SearchCount}\t|\t{rnTrue.Height(rnFalse.Root)}\t|\t{bFalse.Height(bTrue.Root)}");
     }
     static double GetHeightBalance(int n)
     {

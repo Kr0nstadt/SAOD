@@ -94,17 +94,16 @@ namespace ISDP_and_SDP
             return IsBSTUtil(node.Left, min, node.Value - 1) && IsBSTUtil(node.Right, node.Value + 1, max);
         }
 
-        public bool Search(int key)
+        public BalancedNode Search(int key)
         {
             return SearchNode(Root, key);
         }
 
-        private bool SearchNode(BalancedNode node, int key)
+        private BalancedNode SearchNode(BalancedNode node, int key)
         {
-            if (node == null) return false;
-            if (node.Value == key) return true;
-            SearchCount = 1;
-            return key < node.Value ? SearchNode(node.Left, key) : SearchNode(node.Right, key);
+            if (node == null) { return new BalancedNode(-1); }
+            if (node.Value == key) { return node; }
+            SearchCount++; return key < node.Value ? SearchNode(node.Left, key) : SearchNode(node.Right, key);
         }
 
         // Метод для красивого вывода дерева
