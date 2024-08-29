@@ -11,16 +11,16 @@
       "RelativeMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|solutionrelative:saod_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|c:\\users\\karpo\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\saod\\saod_1\\saod_1\\fixedvariable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|solutionrelative:saod_1\\fixedvariable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|c:\\users\\karpo\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\saod\\saod_1\\saod_1\\omegaelias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|solutionrelative:saod_1\\omegaelias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|c:\\users\\karpo\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\saod\\saod_1\\saod_1\\gammaelias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|solutionrelative:saod_1\\gammaelias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|c:\\users\\karpo\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\saod\\saod_1\\saod_1\\fixedvariable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BB5EE53-2C63-4670-A3E9-FBAB95AA709E}|SAOD_1\\SAOD_1.csproj|solutionrelative:saod_1\\fixedvariable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,14 +40,14 @@
               "RelativeDocumentMoniker": "SAOD_1\\FileWork.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\FileWork.cs",
               "RelativeToolTip": "SAOD_1\\FileWork.cs",
-              "ViewState": "AQIAAF4AAAAAAAAAAAAqwG8AAAA3AAAA",
+              "ViewState": "AQIAAHwAAAAAAAAAAAAwwIUAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T15:01:46.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "OmegaElias.cs",
               "DocumentMoniker": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\OmegaElias.cs",
               "RelativeDocumentMoniker": "SAOD_1\\OmegaElias.cs",
@@ -59,19 +59,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "GammaElias.cs",
               "DocumentMoniker": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\GammaElias.cs",
               "RelativeDocumentMoniker": "SAOD_1\\GammaElias.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\GammaElias.cs",
               "RelativeToolTip": "SAOD_1\\GammaElias.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAeAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T13:36:15.727Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "FixedVariable.cs",
               "DocumentMoniker": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\FixedVariable.cs",
               "RelativeDocumentMoniker": "SAOD_1\\FixedVariable.cs",
@@ -89,7 +89,7 @@
               "RelativeDocumentMoniker": "SAOD_1\\Program.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\SAOD_1\\SAOD_1\\Program.cs",
               "RelativeToolTip": "SAOD_1\\Program.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAQwCIAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T12:34:43.276Z"
             }

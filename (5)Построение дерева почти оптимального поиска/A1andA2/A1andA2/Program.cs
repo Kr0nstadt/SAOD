@@ -1,87 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 
-class Node
+public class Node
 {
-    public int Key { get; set; }
     public int Weight { get; set; }
-    public bool Use { get; set; }
     public Node Left { get; set; }
     public Node Right { get; set; }
 
-    public Node(int key, int weight)
+    public Node(int weight)
     {
-        Key = key;
         Weight = weight;
-        Use = false;
         Left = null;
         Right = null;
     }
 }
 
-class OptimalBinarySearchTree
+public class OptimalSearchTree
 {
-    private Node root;
+    public Node Root { get; private set; }
 
-    public OptimalBinarySearchTree()
+    public void BuildA1(List<Node> nodes)
     {
-        root = null;
-    }
+        bool[] used = new bool[nodes.Count];
+        for (int i = 0; i < nodes.Count; i++)
+            used[i] = false;
 
-    // Метод для добавления узла в дерево
-    private void AddNode(Node newNode)
-    {
-        if (root == null)
-        {
-            root = newNode;
-        }
-        else
-        {
-            AddNodeRec(root, newNode);
-        }
-    }
-
-    private void AddNodeRec(Node current, Node newNode)
-    {
-        if (newNode.Key < current.Key)
-        {
-            if (current.Left == null)
-            {
-                current.Left = newNode;
-            }
-            else
-            {
-                AddNodeRec(current.Left, newNode);
-            }
-        }
-        else
-        {
-            if (current.Right == null)
-            {
-                current.Right = newNode;
-            }
-            else
-            {
-                AddNodeRec(current.Right, newNode);
-            }
-        }
-    }
-
-    // Метод для построения дерева
-    public void BuildTree(Node[] nodes)
-    {
-        for (int i = 0; i < nodes.Length; i++)
-        {
-            nodes[i].Use = false; // Инициализируем use как ЛОЖЬ
-        }
-
-        for (int i = 0; i < nodes.Length; i++)
+        for (int i = 0; i < nodes.Count; i++)
         {
             int maxIndex = -1;
             int maxWeight = 0;
 
-            for (int j = 0; j < nodes.Length; j++)
+            for (int j = 0; j < nodes.Count; j++)
             {
-                if (!nodes[j].Use && nodes[j].Weight > maxWeight)
+                if (!used[j] && nodes[j].Weight > maxWeight)
                 {
                     maxWeight = nodes[j].Weight;
                     maxIndex = j;
@@ -90,57 +41,135 @@ class OptimalBinarySearchTree
 
             if (maxIndex != -1)
             {
-                nodes[maxIndex].Use = true; // Устанавливаем use как ИСТИНА
-                AddNode(nodes[maxIndex]); // Добавляем в дерево
+                used[maxIndex] = true;
+                AddToTree(nodes[maxIndex]);
             }
         }
     }
 
-    // Метод для генерации дерева с заданным количеством случайных узлов
-    public static Node[] GenerateRandomNodes(int count)
+    public void BuildA2(List<Node> nodes, int left, int right)
     {
-        Random rand = new Random();
-        Node[] nodes = new Node[count];
+        if (left > right) return;
 
-        for (int i = 0; i < count; i++)
+        int totalWeight = 0;
+        for (int i = left; i <= right; i++)
+            totalWeight += nodes[i].Weight;
+
+        int halfWeight = totalWeight / 2;
+        int sum = 0;
+
+        for (int i = left; i <= right; i++)
         {
-            int key = rand.Next(1, 100); // Генерация случайного ключа
-            int weight = rand.Next(1, 10); // Генерация случайного веса
-            nodes[i] = new Node(key, weight);
+            sum += nodes[i].Weight;
+            if (sum >= halfWeight)
+            {
+                AddToTree(nodes[i]);
+                BuildA2(nodes, left, i - 1);
+                BuildA2(nodes, i + 1, right);
+                break;
+            }
         }
-
-        return nodes;
     }
 
-    // Метод для вывода дерева (для проверки)
+    private void AddToTree(Node newNode)
+    {
+        if (Root == null)
+        {
+            Root = newNode;
+            return;
+        }
+
+        AddToTreeRec(Root, newNode);
+    }
+
+    private void AddToTreeRec(Node root, Node newNode)
+    {
+        if (newNode.Weight < root.Weight)
+        {
+            if (root.Left == null)
+                root.Left = newNode;
+            else
+                AddToTreeRec(root.Left, newNode);
+        }
+        else
+        {
+            if (root.Right == null)
+                root.Right = newNode;
+            else
+                AddToTreeRec(root.Right, newNode);
+        }
+    }
+
+    public double CalculateWeightedHeight(Node node, int depth)
+    {
+        if (node == null) return 0;
+
+        double leftHeight = CalculateWeightedHeight(node.Left, depth + 1);
+        double rightHeight = CalculateWeightedHeight(node.Right, depth + 1);
+
+        return node.Weight * (depth + leftHeight + rightHeight);
+    }
+
+    public double AverageWeightedHeight()
+    {
+        double totalWeight = TotalWeight(Root);
+        return totalWeight == 0 ? 0 : CalculateWeightedHeight(Root, -1) / totalWeight;
+    }
+
+    private double TotalWeight(Node node)
+    {
+        if (node == null) return 0;
+        return node.Weight + TotalWeight(node.Left) + TotalWeight(node.Right);
+    }
+
     public void PrintTree(Node node, string indent = "")
     {
         if (node != null)
         {
             PrintTree(node.Right, indent + "   ");
-            Console.WriteLine(indent + node.Key + " (Weight: " + node.Weight + ")");
+            Console.WriteLine(indent + node.Weight);
             PrintTree(node.Left, indent + "   ");
         }
     }
 
-    public Node GetRoot()
+    // Метод для генерации случайных узлов
+    public List<Node> GenerateRandomNodes(int count)
     {
-        return root;
+        Random rand = new Random();
+        List<Node> nodes = new List<Node>();
+
+        for (int i = 0; i < count; i++)
+        {
+            // Генерируем случайный вес от 1 до 100
+            int weight = rand.Next(1, 101);
+            nodes.Add(new Node(weight));
+        }
+
+        return nodes;
     }
 }
 
-// Пример использования
 class Program
 {
     static void Main()
     {
-        int numberOfNodes = 10; // Задайте количество узлов
-        Node[] randomNodes = OptimalBinarySearchTree.GenerateRandomNodes(numberOfNodes);
+        int numberOfNodes = 10; // Задаем количество узлов
 
-        OptimalBinarySearchTree obst = new OptimalBinarySearchTree();
-        obst.BuildTree(randomNodes);
+        OptimalSearchTree treeA1 = new OptimalSearchTree();
+        List<Node> randomNodesA1 = treeA1.GenerateRandomNodes(numberOfNodes);
+        treeA1.BuildA1(randomNodesA1);
 
-        Console.WriteLine("Дерево после построения:");
-        obst.PrintTree(obst.GetRoot());
+        Console.WriteLine("Дерево А1:");
+        treeA1.PrintTree(treeA1.Root);
+        Console.WriteLine($"Средневзвешенная высота: {treeA1.AverageWeightedHeight()}");
+
+        OptimalSearchTree treeA2 = new OptimalSearchTree();
+        List<Node> randomNodesA2 = treeA2.GenerateRandomNodes(numberOfNodes);
+
+        treeA2.BuildA2(randomNodesA2, 0, randomNodesA2.Count - 1);
+
+        Console.WriteLine("\nДерево А2:");
+        treeA2.PrintTree(treeA2.Root);
+        Console.WriteLine($"Средневзвешенная высота: {treeA2.AverageWeightedHeight()}");
     }
 }
