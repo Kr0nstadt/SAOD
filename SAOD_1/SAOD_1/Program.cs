@@ -16,6 +16,8 @@ class MainClass
         Console.WriteLine("-----------------------------------------------------------------");
         FileWork fileWork = new FileWork();
         Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryFixedVariable);
+        Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryGammaElias);
+        Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryOmegaElias);
     }
     public static long GetFileSize(string filePath)
     {

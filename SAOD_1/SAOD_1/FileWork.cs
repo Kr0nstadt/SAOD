@@ -131,29 +131,30 @@ namespace SAOD_1
         private byte[] ConvertBinaryStringsToBytes(string[] binaryStrings)
         {
             List<byte> bytes = new List<byte>();
+            string stringCode = "";
             for(int i = 0; i < binaryStrings.Length; i++)
             {
                  binaryStrings[i] = binaryStrings[i].Replace(" ","");
+                stringCode += binaryStrings[i];
             }
-            for(int i = 0; i < binaryStrings.Length; i++)
+            foreach (char c in stringCode)
             {
-                bytes.Add(Convert.ToByte(binaryStrings[i]));
+                if (c == '1')
+                {
+                    bytes.Add(1);
+                }
+                else if (c == '0')
+                {
+                    bytes.Add(0);
+                }
+                else
+                {
+                    //Кидаем исключение
+                }
             }
-            return bytes.ToArray();
+           return bytes.ToArray();
         }
 
-    // Метод для проверки, является ли строка допустимой двоичной строкой
-    private bool IsBinaryString(string binaryString)
-    {
-        foreach (char c in binaryString)
-        {
-            if (c != '0' && c != '1')
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 
 
     private byte[] ConvertIntListToByteArray(List<int> intList)
