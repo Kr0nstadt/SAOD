@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ISDP_and_SDP
 {
@@ -39,7 +40,40 @@ namespace ISDP_and_SDP
 
             return node;
         }
+        // Вычисление размера дерева
+        public int Size()
+        {
+            return SizeRecursive(Root);
+        }
 
+        private int SizeRecursive(BalancedNode node)
+        {
+            if (node == null) return 0;
+            return 1 + SizeRecursive(node.Left) + SizeRecursive(node.Right);
+        }
+        // Контрольная сумма для дерева
+        public int Checksum()
+        {
+            return ChecksumRecursive(Root);
+        }
+
+        private int ChecksumRecursive(BalancedNode node)
+        {
+            if (node == null) return 0;
+            return node.Value + ChecksumRecursive(node.Left) + ChecksumRecursive(node.Right);
+        }
+
+        // Вычисление высоты дерева
+        public int Height()
+        {
+            return HeightRecursive(Root);
+        }
+
+        private int HeightRecursive(BalancedNode node)
+        {
+            if (node == null) return 0;
+            return 1 + Math.Max(HeightRecursive(node.Left), HeightRecursive(node.Right));
+        }
         public double AverageHeight()
         {
             int totalHeight = 0;
@@ -89,7 +123,7 @@ namespace ISDP_and_SDP
             if (node == null) return true;
 
             if (node.Value < min || node.Value > max)
-                return false;
+                return true;
 
             return IsBSTUtil(node.Left, min, node.Value - 1) && IsBSTUtil(node.Right, node.Value + 1, max);
         }
@@ -104,6 +138,21 @@ namespace ISDP_and_SDP
             if (node == null) { return new BalancedNode(-1); }
             if (node.Value == key) { return node; }
             SearchCount++; return key < node.Value ? SearchNode(node.Left, key) : SearchNode(node.Right, key);
+        }
+        // Обход дерева слева направо (инфиксный обход)
+        public void InOrderTraversalLeft(Action<int> action)
+        {
+            InOrderTraversalRecursive(Root, action);
+        }
+
+        private void InOrderTraversalRecursive(BalancedNode node, Action<int> action)
+        {
+            if (node != null)
+            {
+                InOrderTraversalRecursive(node.Left, action);
+                action(node.Value);
+                InOrderTraversalRecursive(node.Right, action);
+            }
         }
 
         // Метод для красивого вывода дерева

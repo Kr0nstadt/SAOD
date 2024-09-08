@@ -15,9 +15,11 @@ class MainClass
         }
         Console.WriteLine("-----------------------------------------------------------------");
         FileWork fileWork = new FileWork();
-        Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryFixedVariable);
-        Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryGammaElias);
-        Console.WriteLine(fileWork.MemoryOriginal + "  " + fileWork.MemoryOmegaElias);
+        Console.WriteLine("\n  Размеры файлов в битах :");
+        Console.WriteLine("Без кодировки :    С кодировкой :");
+        Console.WriteLine(fileWork.MemoryOriginal + "\t\tFixedVariable : " + fileWork.MemoryFixedVariable);
+        Console.WriteLine(fileWork.MemoryOriginal + "\t\tGammaElias : " + fileWork.MemoryGammaElias);
+        Console.WriteLine(fileWork.MemoryOriginal + "\t\tOmegaElias : " + fileWork.MemoryOmegaElias);
     }
     public static long GetFileSize(string filePath)
     {

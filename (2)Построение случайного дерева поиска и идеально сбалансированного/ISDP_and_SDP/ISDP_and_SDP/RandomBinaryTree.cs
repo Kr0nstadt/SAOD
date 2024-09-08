@@ -20,21 +20,53 @@ namespace ISDP_and_SDP
         {
             Root = null;
         }
-
-        // Метод для добавления узлов в случайное дерево
-        public void Add(int value)
+        public int Size()
         {
-            Root = AddToTree(Root, value);
+            return SizeRecursive(Root);
         }
-        public void Add(int[] value)
+
+        private int SizeRecursive(RandomNode node)
+        {
+            if (node == null) return 0;
+            return 1 + SizeRecursive(node.Left) + SizeRecursive(node.Right);
+        }
+        // Контрольная сумма для дерева
+        public int Checksum()
+        {
+            return ChecksumRecursive(Root);
+        }
+
+        private int ChecksumRecursive(RandomNode node)
+        {
+            if (node == null) return 0;
+            return node.Value + ChecksumRecursive(node.Left) + ChecksumRecursive(node.Right);
+        }
+
+        // Вычисление высоты дерева
+        public int Height()
+        {
+            return HeightRecursive(Root);
+        }
+
+        private int HeightRecursive(RandomNode node)
+        {
+            if (node == null) return 0;
+            return 1 + Math.Max(HeightRecursive(node.Left), HeightRecursive(node.Right));
+        }
+        // Метод для добавления узлов в случайное дерево
+        public void AddTwo(int value)
+        {
+            Root = AddToTreeTwo(ref Root, value);
+        }
+        public void AddTwo(int[] value)
         {
             for(int i = 0; i < value.Length; i++)
             {
-                Root = AddToTree(Root, value[i]);   
+                Root = AddToTreeTwo( ref Root, value[i]);   
             }
         }
 
-        private RandomNode AddToTree(RandomNode node, int value)
+        private RandomNode AddToTreeTwo(ref RandomNode node, int value)
         {
             if (node == null)
                 return new RandomNode(value);
@@ -44,16 +76,52 @@ namespace ISDP_and_SDP
             if (rand.Next(2) == 0)
             {
                 if (value < node.Value)
-                    node.Left = AddToTree(node.Left, value);
+                    node.Left = AddToTreeTwo( ref node.Left, value);
                 else
-                    node.Right = AddToTree(node.Right, value);
+                    node.Right = AddToTreeTwo(ref node.Right, value);
             }
             else
             {
                 if (value >= node.Value)
-                    node.Right = AddToTree(node.Right, value);
+                    node.Right = AddToTreeTwo(ref node.Right, value);
                 else
-                    node.Left = AddToTree(node.Left, value);
+                    node.Left = AddToTreeTwo(ref node.Left, value);
+            }
+
+            return node;
+        }
+        public void Add(int value)
+        {
+            Root = AddToTree( Root, value);
+        }
+        public void Add(int[] value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                Root = AddToTree( Root, value[i]);
+            }
+        }
+
+        private RandomNode AddToTree( RandomNode node, int value)
+        {
+            if (node == null)
+                return new RandomNode(value);
+
+            // Добавляем случайным образом влево или вправо
+            Random rand = new Random();
+            if (rand.Next(2) == 0)
+            {
+                if (value < node.Value)
+                    node.Left = AddToTree( node.Left, value);
+                else
+                    node.Right = AddToTree( node.Right, value);
+            }
+            else
+            {
+                if (value >= node.Value)
+                    node.Right = AddToTree( node.Right, value);
+                else
+                    node.Left = AddToTree( node.Left, value);
             }
 
             return node;
@@ -135,7 +203,20 @@ namespace ISDP_and_SDP
         {
             PrintTree(Root, "", true);
         }
+        public void InOrderTraversalLeft(Action<int> action)
+        {
+            InOrderTraversalRecursive(Root, action);
+        }
 
+        private void InOrderTraversalRecursive(RandomNode node, Action<int> action)
+        {
+            if (node != null)
+            {
+                InOrderTraversalRecursive(node.Left, action);
+                action(node.Value);
+                InOrderTraversalRecursive(node.Right, action);
+            }
+        }
         private void PrintTree(RandomNode node, string indent, bool last)
         {
             if (node != null)

@@ -69,32 +69,32 @@ namespace BinaryTrea
         public double AverageHeight()
         {
             int totalHeight = 0;
-            int branchCount = 0;
+            int nodeCount = 0;
 
-            CalculateHeight(Root, 1, ref totalHeight, ref branchCount);
+            CalculateHeight(Root, 1, ref totalHeight, ref nodeCount);
 
-            return branchCount == 0 ? 0 : (double)totalHeight / branchCount;
+            return nodeCount == 0 ? 0 : (double)totalHeight / nodeCount;
         }
 
-        private void CalculateHeight(Node node, int currentHeight, ref int totalHeight, ref int branchCount)
+        private void CalculateHeight(Node node, int currentHeight, ref int totalHeight, ref int nodeCount)
         {
             if (node == null)
                 return;
 
-            // Если это листовой узел
-            if (node.Left == null && node.Right == null)
-            {
-                totalHeight += currentHeight; // Суммируем высоту
-                branchCount++; // Увеличиваем счетчик ветвей
-            }
+            // Увеличиваем количество узлов
+            nodeCount++;
 
-            // Рекурсивно проходим влево и вправо
-            CalculateHeight(node.Left, currentHeight + 1, ref totalHeight, ref branchCount);
-            CalculateHeight(node.Right, currentHeight + 1, ref totalHeight, ref branchCount);
+            // Добавляем текущую высоту к общей сумме
+            totalHeight += currentHeight;
+
+            // Рекурсивно вызываем для левого и правого дочерних узлов
+            CalculateHeight(node.Left, currentHeight + 1, ref totalHeight, ref nodeCount);
+            CalculateHeight(node.Right, currentHeight + 1, ref totalHeight, ref nodeCount);
         }
-    
 
-    private int TotalHeight(Node node, int currentHeight)
+
+
+        private int TotalHeight(Node node, int currentHeight)
     {
         if (node == null) return 0;
         return currentHeight + TotalHeight(node.Left, currentHeight + 1) + TotalHeight(node.Right, currentHeight + 1);
@@ -112,8 +112,9 @@ namespace BinaryTrea
         return node.Value + ChecksumRecursive(node.Left) + ChecksumRecursive(node.Right);
     }
 
+
     // Обход дерева слева направо (инфиксный обход)
-    public void InOrderTraversal(Action<int> action)
+    public void InOrderTraversalLeft(Action<int> action)
     {
         InOrderTraversalRecursive(Root, action);
     }
@@ -127,6 +128,37 @@ namespace BinaryTrea
             InOrderTraversalRecursive(node.Right, action);
         }
     }
+        // снизу вверх
+        public void InOrderTraversalBelow(Action<int> action)
+        {
+            InOrderTraversalRecursiveBelow(Root, action);
+        }
+
+        private void InOrderTraversalRecursiveBelow(Node node, Action<int> action)
+        {
+            if (node != null)
+            {
+                
+                InOrderTraversalRecursive(node.Left, action);
+                InOrderTraversalRecursive(node.Right, action);
+                action(node.Value);
+            }
+        }
+        // Сверху вниз
+        public void InOrderTraversalAbove(Action<int> action)
+        {
+            InOrderTraversalRecursiveAbove(Root, action);
+        }
+
+        private void InOrderTraversalRecursiveAbove(Node node, Action<int> action)
+        {
+            if (node != null)
+            {
+                action(node.Value);
+                InOrderTraversalRecursive(node.Left, action);
+                InOrderTraversalRecursive(node.Right, action);
+            }
+        }
 
         // Вывод дерева в консоль
 

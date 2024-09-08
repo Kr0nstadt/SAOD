@@ -17,13 +17,13 @@ namespace SAOD_1
             List<int> number = new List<int>();
             for (int i = 0; i < 300; i++)
             {
-                GenerationOriginal.Add(random.Next(1, 99));
+                GenerationOriginal.Add(random.Next(10, 99));
             }
             using (BinaryWriter writer = new BinaryWriter(File.Open(partOriginal, FileMode.Create)))
             {
                 writer.Write(ConvertIntListToByteArray(GenerationOriginal));
             }
-            _memoryOriginal = GetFileSize(partOriginal);
+            _memoryOriginal = 300 * 32;
 
             string partFixedVariable = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\SAOD_1\\FixedVariable.bin";
             string [] GeneretionFixedVariable = new string[GenerationOriginal.Count];
@@ -141,11 +141,11 @@ namespace SAOD_1
             {
                 if (c == '1')
                 {
-                    bytes.Add(1);
+                    bytes.Add((byte)1);
                 }
                 else if (c == '0')
                 {
-                    bytes.Add(0);
+                    bytes.Add((byte)0);
                 }
                 else
                 {
