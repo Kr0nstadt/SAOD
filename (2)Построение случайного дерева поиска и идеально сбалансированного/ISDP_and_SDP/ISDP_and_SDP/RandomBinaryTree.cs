@@ -54,41 +54,48 @@ namespace ISDP_and_SDP
             return 1 + Math.Max(HeightRecursive(node.Left), HeightRecursive(node.Right));
         }
         // Метод для добавления узлов в случайное дерево
-        public void AddTwo(int value)
-        {
-            Root = AddToTreeTwo(ref Root, value);
-        }
+ 
         public void AddTwo(int[] value)
         {
             for(int i = 0; i < value.Length; i++)
             {
-                Root = AddToTreeTwo( ref Root, value[i]);   
+                 AddToTreeTwo(value[i]);   
             }
         }
 
-        private RandomNode AddToTreeTwo(ref RandomNode node, int value)
+        private void AddToTreeTwo( int value)
         {
-            if (node == null)
-                return new RandomNode(value);
-
-            // Добавляем случайным образом влево или вправо
-            Random rand = new Random();
-            if (rand.Next(2) == 0)
+            if (Root == null)
             {
-                if (value < node.Value)
-                    node.Left = AddToTreeTwo( ref node.Left, value);
-                else
-                    node.Right = AddToTreeTwo(ref node.Right, value);
+                Root = new RandomNode(value);
+                return;
             }
-            else
+            RandomNode current = Root;
+            RandomNode parent = null;
+            while (true)
             {
-                if (value >= node.Value)
-                    node.Right = AddToTreeTwo(ref node.Right, value);
+                parent = current;
+                if(value < current.Value)
+                {
+                    current = current.Left;
+                    if(current == null)
+                    {
+                        parent.Left = new RandomNode(value);
+                        return;
+                    }
+                }
                 else
-                    node.Left = AddToTreeTwo(ref node.Left, value);
+                {
+                    current = current.Right;
+                    if(current == null)
+                    {
+                        parent.Right = new RandomNode(value);
+                        return;
+                    }
+                }
             }
 
-            return node;
+            
         }
         public void Add(int value)
         {

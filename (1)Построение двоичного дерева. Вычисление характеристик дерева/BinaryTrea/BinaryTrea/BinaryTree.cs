@@ -123,9 +123,9 @@ namespace BinaryTrea
     {
         if (node != null)
         {
-            InOrderTraversalRecursive(node.Left, action);
-            action(node.Value);
-            InOrderTraversalRecursive(node.Right, action);
+                InOrderTraversalRecursive(node.Left, action);
+                Console.Write(node.Value);
+                InOrderTraversalRecursive(node.Right, action);
         }
     }
         // снизу вверх
@@ -141,7 +141,7 @@ namespace BinaryTrea
                 
                 InOrderTraversalRecursive(node.Left, action);
                 InOrderTraversalRecursive(node.Right, action);
-                action(node.Value);
+                Console.Write(node.Value);
             }
         }
         // Сверху вниз
@@ -154,7 +154,7 @@ namespace BinaryTrea
         {
             if (node != null)
             {
-                action(node.Value);
+                Console.Write(node.Value);
                 InOrderTraversalRecursive(node.Left, action);
                 InOrderTraversalRecursive(node.Right, action);
             }
@@ -166,7 +166,7 @@ namespace BinaryTrea
         {
             PrintRecursive(Root, "", true);
         }
-
+        private int index = 1;
         private void PrintRecursive(Node node, string indent, bool last)
         {
             if (node != null)
@@ -183,10 +183,11 @@ namespace BinaryTrea
                     Console.Write("L---- ");
                     indent += "|    ";
                 }
-
-                Console.WriteLine(node.Value);
+                Console.WriteLine(node.Value + $"({index})");
+                index++;
                 PrintRecursive(node.Left, indent, false);
                 PrintRecursive(node.Right, indent, true);
+
             }
         }
 

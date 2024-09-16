@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "BinaryTrea\\BinaryTree.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\(1)\u041F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 \u0434\u0432\u043E\u0438\u0447\u043D\u043E\u0433\u043E \u0434\u0435\u0440\u0435\u0432\u0430. \u0412\u044B\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435 \u0445\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A \u0434\u0435\u0440\u0435\u0432\u0430\\BinaryTrea\\BinaryTrea\\BinaryTree.cs",
               "RelativeToolTip": "BinaryTrea\\BinaryTree.cs",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAswH4AAAAfAAAA",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAMwJwAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T11:11:42.344Z",
               "EditorCaption": ""
@@ -47,7 +47,8 @@
               "RelativeToolTip": "BinaryTrea\\Node.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T11:10:56.885Z"
+              "WhenOpened": "2024-08-19T11:10:56.885Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -57,7 +58,7 @@
               "RelativeDocumentMoniker": "BinaryTrea\\Program.cs",
               "ToolTip": "C:\\Users\\karpo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\SAOD\\(1)\u041F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 \u0434\u0432\u043E\u0438\u0447\u043D\u043E\u0433\u043E \u0434\u0435\u0440\u0435\u0432\u0430. \u0412\u044B\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435 \u0445\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A \u0434\u0435\u0440\u0435\u0432\u0430\\BinaryTrea\\BinaryTrea\\Program.cs",
               "RelativeToolTip": "BinaryTrea\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB4AAABEAAAA",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAzwCQAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T10:51:21.052Z",
               "EditorCaption": ""

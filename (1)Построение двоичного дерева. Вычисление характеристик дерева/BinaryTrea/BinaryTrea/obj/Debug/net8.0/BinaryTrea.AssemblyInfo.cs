@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BinaryTrea")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59c354edabe85cd37791cd922fb07c1a2b08467f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+810018c0a114bb299635bfe73bbe2eda94717ae6")]
 [assembly: System.Reflection.AssemblyProductAttribute("BinaryTrea")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BinaryTrea")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

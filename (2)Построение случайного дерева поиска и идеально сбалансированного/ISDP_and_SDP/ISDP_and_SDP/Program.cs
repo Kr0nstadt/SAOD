@@ -11,9 +11,8 @@ class Program
         int[] values = new int[100];
         for (int i = 0; i < values.Length; i++)
         {
-           values[i] = rand.Next(10, 100);
+            values[i] = i;
         }
-
         balancedTree.Add(values);
 
         Console.WriteLine("\n\t\t\tLab2.Идеально сбалансированное дерево:\nИДС на 100 элементов :");
@@ -43,9 +42,9 @@ class Program
         Console.WriteLine("---------------------------------------------------------------------------");
 
         RandomBinaryTree  rnTrue = new RandomBinaryTree();
-        rnTrue.Add(GenerateArray(500));
+        rnTrue.Add(GenerateArray(-500));
         BalancedBinaryTree bTrue = new BalancedBinaryTree();
-        bTrue.Add(GenerateArray(500));
+        bTrue.Add(GenerateArray(-500));
         bTrue.Search(45);
        
         Console.WriteLine($"   {rnTrue.Search(45).Value}   |\t{rnTrue.SearchCount}\t|\t {bTrue.SearchCount}\t|\t{rnTrue.Height(rnTrue.Root)}\t|\t{bTrue.Height(bTrue.Root)}");
@@ -61,10 +60,19 @@ class Program
 
         // Случайное дерево поиска
         RandomBinaryTree randomTree = new RandomBinaryTree();
-        
+        int[] arra = new int[100]; 
         for (int i = 0; i < 100; i++)
         {
-            randomTree.Add(rand.Next(10, 100));
+            int val = rand.Next(1,111);
+            if(arra.Contains(val) == false)
+            {
+                arra[i] = val;
+            }
+            else { i--; }
+        }
+        for(int i  = 0; i < arra.Length; i++)
+        {
+            randomTree.Add(arra[i]);
         }
 
         Console.WriteLine("\n\n\n\t\t\tLab3.Случайное дерево поиска:");
@@ -83,10 +91,18 @@ class Program
 
         for (int i = 0; i < 100; i++)
         {
-            randomTreeTwo.AddTwo(rand.Next(10, 100));
+            int val = rand.Next(1, 111);
+            if (arra.Contains(val) == false)
+            {
+                arra[i] = val;
+            }
+            else { i--; }
+        }
+        for (int i = 0; i < arra.Length; i++)
+        {
+            randomTreeTwo.Add(arra[i]);
         }
 
- 
         Console.WriteLine("C двойственностью дерево");
         randomTreeTwo.PrintTree();
         randomTreeTwo.InOrderTraversalLeft(value => Console.Write(value + " "));
@@ -138,11 +154,26 @@ class Program
     }
     static int[] GenerateArray(int n)
     {
+        bool flag = false;
+        if(n < 0)
+        {
+            n = Math.Abs(n);
+            flag = true;
+        }
         int[] array = new int[n];
         Random random = new Random();
         for(int i = 0;i < n; i++)
         {
-            array[i] = random.Next(10, 99);
+            if( i == 400 && flag )
+            {
+                array[i] = 45;
+            }
+            int val = random.Next(1,999);
+            if(array.Contains(val) == false)
+            {
+                array[i] = val;
+            }
+            else { i--; }
         }
         return array;
     }
