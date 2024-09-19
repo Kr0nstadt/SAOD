@@ -124,14 +124,15 @@ namespace BinaryTrea
         if (node != null)
         {
                 InOrderTraversalRecursive(node.Left, action);
-                Console.Write(node.Value);
+                action(node.Value);
                 InOrderTraversalRecursive(node.Right, action);
         }
     }
         // снизу вверх
         public void InOrderTraversalBelow(Action<int> action)
         {
-            InOrderTraversalRecursiveBelow(Root, action);
+            //InOrderTraversalRecursiveBelow(Root, action);
+            InOrderTraversalNonRecursiveBelow(Root, action);
         }
 
         private void InOrderTraversalRecursiveBelow(Node node, Action<int> action)
@@ -144,10 +145,22 @@ namespace BinaryTrea
                 Console.Write(node.Value);
             }
         }
+
+        private void InOrderTraversalNonRecursiveBelow(Node node, Action<int> action)
+        {
+            Stack<int> sNodes = new Stack<int>();
+            InOrderTraversalNonRecursiveAbove(node, i => { sNodes.Push(i); });
+
+            foreach (int i in sNodes)
+            {
+                action(i);
+            }
+        }
         // Сверху вниз
         public void InOrderTraversalAbove(Action<int> action)
         {
-            InOrderTraversalRecursiveAbove(Root, action);
+            //InOrderTraversalRecursiveAbove(Root, action);
+            InOrderTraversalNonRecursiveAbove(Root, action);
         }
 
         private void InOrderTraversalRecursiveAbove(Node node, Action<int> action)
@@ -157,6 +170,33 @@ namespace BinaryTrea
                 Console.Write(node.Value);
                 InOrderTraversalRecursive(node.Left, action);
                 InOrderTraversalRecursive(node.Right, action);
+            }
+        }
+
+        private void InOrderTraversalNonRecursiveAbove(Node? node, Action<int> action)
+        {
+            Queue<Node> qNodes = new Queue<Node>();
+            if (node != null)
+            {
+                qNodes.Enqueue(node);
+            }
+
+
+            while (qNodes.Count > 0)
+            {
+                Node current = qNodes.Dequeue();
+                if (current.Left != null)
+                {
+                    qNodes.Enqueue(current.Left);
+                }
+
+                if (current.Right != null)
+                {
+                    qNodes.Enqueue(current.Right);
+                }
+
+                action(current.Value);
+
             }
         }
 
