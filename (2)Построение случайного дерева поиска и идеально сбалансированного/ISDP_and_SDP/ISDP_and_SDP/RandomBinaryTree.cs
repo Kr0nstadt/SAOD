@@ -239,7 +239,7 @@ namespace ISDP_and_SDP
                     Console.Write("L---- ");
                     indent += "|  ";
                 }
-                Console.WriteLine(node.Value);
+                Console.WriteLine($"{node.Value}({node.Index})");
                 PrintTree(node.Left, indent, false);
                 PrintTree(node.Right, indent, true);
             }

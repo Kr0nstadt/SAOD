@@ -206,7 +206,6 @@ namespace BinaryTrea
         {
             PrintRecursive(Root, "", true);
         }
-        private int index = 1;
         private void PrintRecursive(Node node, string indent, bool last)
         {
             if (node != null)
@@ -223,8 +222,7 @@ namespace BinaryTrea
                     Console.Write("L---- ");
                     indent += "|    ";
                 }
-                Console.WriteLine(node.Value + $"({index})");
-                index++;
+                Console.WriteLine($"{node.Value}({node.Index - 1})");
                 PrintRecursive(node.Left, indent, false);
                 PrintRecursive(node.Right, indent, true);
 

@@ -17,9 +17,9 @@ class Program
 
         Console.WriteLine("\n\t\t\tLab2.Идеально сбалансированное дерево:\nИДС на 100 элементов :");
         balancedTree.PrintTree();
-        balancedTree.InOrderTraversalLeft(value => Console.Write(value + " "));
+        balancedTree.InOrderTraversalLeft(Index => Console.Write(Index + " "));
         Console.WriteLine();
-        Console.WriteLine($"Средняя высота: {balancedTree.AverageHeight()}");
+        Console.WriteLine($"Средняя высота: {balancedTree.AverageHeight():F2}");
         Console.WriteLine($"Высота: {balancedTree.Height()}");
         Console.WriteLine($"Теоритическая высота :{Math.Log2(values.Length + 1)}");
         Console.WriteLine($"Размер: {balancedTree.Size()}");
@@ -55,7 +55,7 @@ class Program
         bFalse.Search(-1);
 
         Console.WriteLine($"   {rnFalse.Search(-1).Value}  |\t{rnFalse.SearchCount}\t|\t {bFalse.SearchCount}\t|\t{rnTrue.Height(rnFalse.Root)}\t|\t{bFalse.Height(bTrue.Root)}");
-
+        RandomNode.Counter = 0;
 
 
         // Случайное дерево поиска
@@ -74,13 +74,13 @@ class Program
         {
             randomTree.Add(arra[i]);
         }
-
+        RandomNode.Counter = 0;
         Console.WriteLine("\n\n\n\t\t\tLab3.Случайное дерево поиска:");
         Console.WriteLine("Рекурсивное дерево");
-        randomTree.PrintTree();
+        //randomTree.PrintTree();
         randomTree.InOrderTraversalLeft(value => Console.Write(value + " "));
         Console.WriteLine();
-        Console.WriteLine($"Средняя высота: {randomTree.AverageHeight()}");
+        Console.WriteLine($"Средняя высота: {randomTree.AverageHeight():F2}");
         Console.WriteLine($"Высота: {randomTree.Height()}");
         Console.WriteLine($"Контрольная сумма: {randomTree.Checksum()}");
         Console.WriteLine($"Размер: {randomTree.Size()}");
@@ -88,23 +88,16 @@ class Program
 
         Console.WriteLine();
         RandomBinaryTree randomTreeTwo = new RandomBinaryTree();
+        RandomNode.Counter = 0;
 
-        for (int i = 0; i < 100; i++)
-        {
-            int val = rand.Next(1, 111);
-            if (arra.Contains(val) == false)
-            {
-                arra[i] = val;
-            }
-            else { i--; }
-        }
+      
         for (int i = 0; i < arra.Length; i++)
         {
             randomTreeTwo.Add(arra[i]);
         }
 
         Console.WriteLine("C двойственностью дерево");
-        randomTreeTwo.PrintTree();
+       // randomTreeTwo.PrintTree();
         randomTreeTwo.InOrderTraversalLeft(value => Console.Write(value + " "));
         Console.WriteLine();
         Console.WriteLine($"Средняя высота: {randomTreeTwo.AverageHeight()}");
@@ -112,15 +105,16 @@ class Program
         Console.WriteLine($"Контрольная сумма: {randomTreeTwo.Checksum()}");
         Console.WriteLine($"Размер: {randomTreeTwo.Size()}");
         Console.WriteLine($"Является ли деревом поиска: {randomTreeTwo.IsBinarySearchTree()}");
-
+        BalancedBinaryTree balancedBinaryTree = new BalancedBinaryTree();
+        balancedBinaryTree.Add(arra);
         // Поиск элемента
         Console.WriteLine($"Поиск элемента по ключу 50: {randomTree.Search(50)}\n\n\n");
         Console.WriteLine("-----------------------------------------------------------");
         Console.WriteLine(" N = 100 | Размер | Контр. сумма | Высота | Средн. высота |");
         Console.WriteLine("-----------------------------------------------------------");
-        Console.WriteLine($"   ИСДП  |   {GetSizeBalance(100).Size()}  | \t{GetSizeBalance(100).Checksum()}\t |   {GetSizeBalance(100).Height()}    | {GetSizeBalance(100).AverageHeight()}");
-        Console.WriteLine($"   CДП1  |   {GetRandomRek(100).Size()}  | \t{GetRandomRek(100).Checksum()}\t |   {GetRandomRek(100).Height()}   | {GetRandomRek(100).AverageHeight()}");
-        Console.WriteLine($"   CДП2  |   {GetRandomTwo(100).Size()}  | \t{GetRandomTwo(100).Checksum()}\t |   {GetRandomTwo(100).Height()}   | {GetRandomTwo(100).AverageHeight()}");
+        Console.WriteLine($"   ИСДП  |   {balancedBinaryTree.Size()}  | \t{balancedBinaryTree.Checksum()}\t |   {balancedBinaryTree.Height()}    | {balancedBinaryTree.AverageHeight()}");
+        Console.WriteLine($"   CДП1  |   {randomTree.Size()}  | \t{randomTree.Checksum()}\t |   {randomTree.Height()}   | {randomTree.AverageHeight()}");
+        Console.WriteLine($"   CДП2  |   {randomTreeTwo.Size()}  | \t{randomTreeTwo.Checksum()} \t |    {randomTreeTwo.Height()}  |  {randomTreeTwo.AverageHeight()}");
     }
     static RandomBinaryTree GetRandomTwo(int n)
     {

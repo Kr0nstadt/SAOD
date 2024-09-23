@@ -25,15 +25,17 @@ namespace ISDP_and_SDP
         {
             Array.Sort(values);
             Root = AddToTree(values, 0, values.Length - 1);
+            BalancedNode.Counter = 0;
         }
-
+        int index = 1;
         private BalancedNode AddToTree(int[] values, int start, int end)
         {
             if (start > end)
                 return null;
 
             int mid = (start + end) / 2;
-            BalancedNode node = new BalancedNode(values[mid]);
+            BalancedNode node = new BalancedNode(values[mid],index);
+            index++;
 
             node.Left = AddToTree(values, start, mid - 1);
             node.Right = AddToTree(values, mid + 1, end);
@@ -135,14 +137,14 @@ namespace ISDP_and_SDP
 
         private BalancedNode SearchNode(BalancedNode node, int key)
         {
-            if (node == null) { return new BalancedNode(-1); }
+            if (node == null) { return new BalancedNode(-1,0); }
             if (node.Value == key) { return node; }
             SearchCount++; return key < node.Value ? SearchNode(node.Left, key) : SearchNode(node.Right, key);
         }
         // Обход дерева слева направо (инфиксный обход)
         public void InOrderTraversalLeft(Action<int> action)
         {
-            InOrderTraversalRecursive(Root, action);
+            InOrderTraversalRecursive(Root,action);
         }
 
         private void InOrderTraversalRecursive(BalancedNode node, Action<int> action)
@@ -150,7 +152,7 @@ namespace ISDP_and_SDP
             if (node != null)
             {
                 InOrderTraversalRecursive(node.Left, action);
-                action(node.Value);
+                action(node.Index);
                 InOrderTraversalRecursive(node.Right, action);
             }
         }
@@ -176,7 +178,7 @@ namespace ISDP_and_SDP
                     Console.Write("L---- ");
                     indent += "|  ";
                 }
-                Console.WriteLine(node.Value);
+                Console.WriteLine($"{node.Value}({node.Index})");
                 PrintTree(node.Left, indent, false);
                 PrintTree(node.Right, indent, true);
             }

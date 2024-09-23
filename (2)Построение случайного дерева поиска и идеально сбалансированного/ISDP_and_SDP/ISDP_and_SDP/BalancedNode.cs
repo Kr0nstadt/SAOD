@@ -11,12 +11,16 @@ namespace ISDP_and_SDP
         public int Value;
         public BalancedNode Left;
         public BalancedNode Right;
-
-        public BalancedNode(int value)
+        public int Index;
+        public static int Counter = 0;
+        public BalancedNode(int value,int index)
         {
             Value = value;
             Left = null;
             Right = null;
+            Counter++;
+            Index = index;
+
         }
     }
 }
