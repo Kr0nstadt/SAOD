@@ -24,6 +24,58 @@ namespace ISDP_and_SDP
         {
             return SizeRecursive(Root);
         }
+        public void Delete(int key)
+        {
+            Root = DeleteRec(Root, key);
+        }
+
+        private RandomNode DeleteRec(RandomNode node, int key)
+        {
+
+            if (node == null)
+            {
+                return node;
+            }
+
+
+            if (key < node.Value)
+            {
+                node.Left = DeleteRec(node.Left, key);
+            }
+            else if (key > node.Value)
+            {
+                node.Right = DeleteRec(node.Right, key);
+            }
+            else
+            {
+
+                if (node.Left == null)
+                {
+                    return node.Right;
+                }
+                else if (node.Right == null)
+                {
+                    return node.Left;
+                }
+
+                node.Value = MinValue(node.Right);
+
+                node.Right = DeleteRec(node.Right, node.Value);
+            }
+
+            return node;
+        }
+
+        private int MinValue(RandomNode node)
+        {
+            int minValue = node.Value;
+            while (node.Left != null)
+            {
+                minValue = node.Left.Value;
+                node = node.Left;
+            }
+            return minValue;
+        }
 
         private int SizeRecursive(RandomNode node)
         {
@@ -210,19 +262,23 @@ namespace ISDP_and_SDP
         {
             PrintTree(Root, "", true);
         }
-        public void InOrderTraversalLeft(Action<int> action)
+        public void InOrderTraversalLeft(Action<RandomNode> action)
         {
             InOrderTraversalRecursive(Root, action);
         }
 
-        private void InOrderTraversalRecursive(RandomNode node, Action<int> action)
+        private void InOrderTraversalRecursive(RandomNode node, Action<RandomNode> action)
         {
             if (node != null)
             {
                 InOrderTraversalRecursive(node.Left, action);
-                action(node.Value);
+                action(node);
                 InOrderTraversalRecursive(node.Right, action);
             }
+        }
+        public override string ToString()
+        {
+            return $"{Root.Value}({Root.Index})";
         }
         private void PrintTree(RandomNode node, string indent, bool last)
         {

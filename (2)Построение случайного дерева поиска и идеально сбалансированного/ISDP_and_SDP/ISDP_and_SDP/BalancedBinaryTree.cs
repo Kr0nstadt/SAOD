@@ -151,8 +151,28 @@ namespace ISDP_and_SDP
         {
             if (node != null)
             {
+                
+                
                 InOrderTraversalRecursive(node.Left, action);
-                action(node.Index);
+                action(node.Value);
+                InOrderTraversalRecursive(node.Right, action);
+            }
+        }
+
+
+        public void InOrderTraversalLeft(Action<BalancedNode> action)
+        {
+            InOrderTraversalRecursive(Root, action);
+        }
+
+        private void InOrderTraversalRecursive(BalancedNode node, Action<BalancedNode> action)
+        {
+            if (node != null)
+            {
+
+
+                InOrderTraversalRecursive(node.Left, action);
+                action(node);
                 InOrderTraversalRecursive(node.Right, action);
             }
         }
@@ -160,6 +180,33 @@ namespace ISDP_and_SDP
         // Метод для красивого вывода дерева
         public void PrintTree()
         {
+            int indexNode = 1;
+            Queue<BalancedNode> qNodes = new Queue<BalancedNode>();
+            if (Root != null)
+            {
+                qNodes.Enqueue(Root);
+            }
+
+
+            while (qNodes.Count > 0)
+            {
+                BalancedNode current = qNodes.Dequeue();
+                if (current.Left != null)
+                {
+                    qNodes.Enqueue(current.Left);
+                }
+
+                if (current.Right != null)
+                {
+                    qNodes.Enqueue(current.Right);
+                }
+
+                //action(current.Value);
+                current.Index = indexNode;
+                ++indexNode;
+
+            }
+
             PrintTree(Root, "", true);
         }
 

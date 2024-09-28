@@ -21,6 +21,10 @@ namespace ISDP_and_SDP
             Counter++;
             Index += Counter;
         }
+        public override string ToString()
+        {
+            return $"{Value}({Index})";
+        }
     }
 
 }
