@@ -1,0 +1,193 @@
+//Пример создания стека
+#include <stdio.h>
+struct spis {
+       char data[80];
+       spis *next;
+} *head, *p;
+int main() {
+ int flag;
+ head=new spis; head->next=NULL;
+ do {
+   p=new spis;
+   scanf("%s",p->data);  
+   p->next=head->next;
+   head->next=p;
+   printf("добавить еще элемент? 1/0 ");   scanf("%d",&flag);
+ } while(flag);
+for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+}
+
+//Пример создания очереди
+#include <stdio.h>
+#include <string.h>
+struct spis {
+       char data[80];
+       spis *next;
+} *head, *p, *tail;
+int main() {
+ int flag;
+ head=tail=new spis; tail->next=NULL; 
+ do {
+   p=new spis;
+   scanf("%s",p->data);
+   tail->next=p;
+   tail=p;
+ } while(strcmp(p->data,"0")); //ввод до 0
+ tail->next=NULL;
+ for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+//Пример поиска  в списке строки st
+for(flag=1,p=head->next; p; p=p->next) 
+if(strcmp(p->data, "1")==0)  {printf("найдено %s\n",p->data);flag=0;}
+if(flag) printf("не найдено");
+}
+
+//Пример создания очереди  поиск и удаление 
+#include <stdio.h>
+#include <string.h>
+#define N 6
+struct spis {
+       char data[80];
+       spis *next;
+} *head, *p, *pp, *tail;
+int main() {
+ int flag;
+ char m[N][80]={"bbb","ccc","ddd","ddd", "ccc","ccc"};
+head=tail=new spis; tail->next=NULL; 
+for(int i=0; i<N; i++) {
+   p=new spis;
+   strcpy(p->data,m[i]);
+   tail->next=p;
+   tail=p; 
+  // tail->next=NULL;
+   }
+ tail->next=NULL;
+ for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+  // поиск и удаление в списке строки st
+  char st[80];
+  printf("введите строку для поиска ");
+  scanf("%s",st);
+  for(flag=1,p=head->next, pp=head; p; ) {
+    if(strcmp(p->data, st)==0)  {
+     printf("%s\n",p->data);
+     pp->next=p->next;
+     delete(p);
+     p=pp->next;
+     flag=0;
+     continue;
+   }
+   pp=p; p=p->next;
+}
+if(flag) printf("не найдено");
+printf("\n");
+ for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+}
+
+//Пример сортировки элементов списка (меняются только ссылки, информационные поля не копируются!)
+#include <stdio.h>
+#include <string.h>
+#define N 6
+struct spis {
+       char data[80];
+       spis *next;
+} *head, *p, *pp, *t1, *t2, *tail;
+int main() {
+ int flag;
+ char m[N][80]={"bbb","ccc","ddd","ddd", "ccc","ccc"};
+head=tail=new spis; tail->next=NULL; 
+for(int i=0; i<N; i++) {
+   p=new spis;
+   strcpy(p->data,m[i]);
+   tail->next=p;
+   tail=p; 
+  // tail->next=NULL;
+   }
+ tail->next=NULL;
+ for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+  // сортировка
+do {
+  flag=0;
+  for(p=head; p->next->next; p=p->next) {
+    t1=p->next; t2=t1->next;
+    if(strcmp(t1->data, t2->data) > 0) {
+      p->next=t2; t1->next=t2->next; t2->next=t1; flag=1;
+     }
+  }
+} while(flag);
+
+printf("\n");
+ for(p=head->next; p; p=p->next)
+  printf("%s\n",p->data);
+}
+
+Двусвязные списки
+
+Список, в котором элемент имеет ссылки на предыдущий и последующий элемент называется двусвязным. Главное отличие от односвязного – возможность перемещения в обоих направлениях. 
+
+//двусвязный список
+
+#include <stdio.h>
+#include <string.h>
+
+struct spis {
+  char data[80];
+  spis *next, *prev;
+};
+
+//вывод с головы
+void print_h(spis * head) {
+spis  *p;
+printf("\n");
+for(p=head->next; p->next; p=p->next)
+  printf("%s\n",p->data);
+printf("\n");
+}
+//вывод с хвоста
+void print_t(spis * tail) {
+spis  *p;
+printf("\n");
+for(p=tail->prev; p->prev; p=p->prev)
+  printf("%s\n",p->data);
+printf("\n");
+}
+
+//добавление в хвост
+void add(spis * &tail) {
+spis  *p;
+do{
+   p=new spis;
+   scanf("%s",p->data);
+   p->next=tail->next;
+   p->prev=tail;
+   tail->next=p;
+   tail=p;
+ } while(strcmp(p->data,"q"));
+}
+
+//удаление строк начинающихся с заданного символа
+void del (spis * head, char k){
+spis * p, *t;
+for(p=head->next; p->next; )
+   if(p->data[0]==k) {
+   	t=p;
+   	p=p->next;
+   	t->next->prev=t->prev;
+    t->prev->next=t->next;
+    delete(t);
+  }
+  else p=p->next;
+}
+
+int main(){
+spis *head, *p, *t, *tail;
+head=tail=new spis, head->next=head->prev=NULL;
+add(tail);
+print_h(head);
+print_t(tail);
+del(head,'2');
+del(head,'3');
+print_h(head);

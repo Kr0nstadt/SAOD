@@ -148,6 +148,75 @@ class Program
             randomBinaryTree.InOrderTraversalLeft(node => Console.Write($"{node.Value}({node.Index}) "));
             Console.WriteLine();
         }
+
+
+
+
+
+
+
+        string filePath = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\(2)Построение случайного дерева поиска и идеально сбалансированного\\ISDP_and_SDP\\CCode.txt";
+
+        // Ключевые слова языка C
+        HashSet<string> keywords = new HashSet<string>
+        {
+            "auto", "break", "case", "char", "const", "continue", "default",
+            "do", "double", "else", "enum", "extern", "float", "for",
+            "goto", "if", "int", "long", "register", "return",
+            "short", "signed", "sizeof", "static", "struct", "switch",
+            "typedef", "union", "unsigned", "void", "volatile", "while",
+            "printf" ,"include","print"// добавьте другие ключевые слова по необходимости
+        };
+
+        // Словарь для хранения количества вхождений каждого слова
+        Dictionary<string, int> wordCount = new Dictionary<string, int>();
+
+        try
+        {
+            // Чтение файла
+            string code = File.ReadAllText(filePath);
+
+            // Разделение текста на слова
+            var words = code.Split(new[] { ' ','_','\n', '\r', '(', ')', '{', '}', '[', ']', ';', ',', '.', '"', '\'','*','&' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var word in words)
+            {
+                // Приведение к нижнему регистру для учета регистра
+                string lowerWord = word.ToLower();
+
+                // Проверка, является ли слово ключевым словом
+                if (keywords.Contains(lowerWord))
+                {
+                    if (wordCount.ContainsKey(lowerWord))
+                    {
+                        wordCount[lowerWord]++;
+                    }
+                    else
+                    {
+                        wordCount[lowerWord] = 1;
+                    }
+                }
+            }
+
+            // Вывод результатов
+            Console.WriteLine("Ключевые слова и их частота:");
+            foreach (var kvp in wordCount.OrderBy(kvp => kvp.Key))
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка: {ex.Message}");
+        }
+        RandomNode.Counter = 0;
+        RandomBinaryTree tree = new RandomBinaryTree();
+        foreach(var key in wordCount.OrderBy(key => key.Key))
+        {
+            tree.Add(key.Value);
+        }
+        tree.PrintTree();
+
     }
     static RandomBinaryTree GetRandomTwo(int n)
     {

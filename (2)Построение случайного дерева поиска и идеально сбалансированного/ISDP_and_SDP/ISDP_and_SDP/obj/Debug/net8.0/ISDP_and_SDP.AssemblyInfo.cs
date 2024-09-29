@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISDP_and_SDP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccf04a8b4a0d8bc4ba994841f397979852a61f36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edc2aac993598db1395b04122d43c07594ac8dff")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISDP_and_SDP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISDP_and_SDP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

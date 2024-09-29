@@ -300,5 +300,33 @@ namespace ISDP_and_SDP
                 PrintTree(node.Right, indent, true);
             }
         }
+        public void PrintVal(Dictionary<string, int> wordCount)
+        {
+            PrintVal(Root, "", true, wordCount);
+        }
+        private void PrintVal(RandomNode node, string indent, bool last, Dictionary<string, int> wordCount)
+        {
+            if (node != null)
+            {
+                Console.Write(indent);
+                if (last)
+                {
+                    Console.Write("R---- ");
+                    indent += "   ";
+                }
+                else
+                {
+                    Console.Write("L---- ");
+                    indent += "|  ";
+                }
+                //if(wordCount.TryGetValue(node.Value, out string value))
+                {
+
+                }
+                Console.WriteLine($"{node.Value}({node.Index})");
+                PrintTree(node.Left, indent, false);
+                PrintTree(node.Right, indent, true);
+            }
+        }
     }
 }
