@@ -139,14 +139,26 @@ class Program
         Console.WriteLine("Дерево до удаления :");
         randomBinaryTree.PrintTree();
         randomBinaryTree.InOrderTraversalLeft(node => Console.Write($"{node.Value}({node.Index}) "));
-        int[] DeleteArray = new int []{ 6, 3, 9, 10, 1, 4, 2, 14, 7, 5, 3 };
-        for(int i = 0; i < DeleteArray.Length; i++)
+        Console.WriteLine();
+        string flag = "";
+        while (true)
         {
-            randomBinaryTree.Delete(NewInt[DeleteArray[i]]);
-            Console.WriteLine($"Удаление вершины {NewInt[DeleteArray[i]]}");
-            randomBinaryTree.PrintTree();
-            randomBinaryTree.InOrderTraversalLeft(node => Console.Write($"{node.Value}({node.Index}) "));
-            Console.WriteLine();
+            flag = Console.ReadLine();
+            int val = 0;
+
+            try{val = Int32.Parse(flag); }
+            catch { break;}
+            if(NewInt.Contains(val) == false)
+            {
+                Console.WriteLine("Такого значения нет в дереве");
+            }
+            else
+            {
+                randomBinaryTree.Delete(val);
+                Console.WriteLine("Удаление вершины " + val);
+                randomBinaryTree.PrintTree();
+                randomBinaryTree.InOrderTraversalLeft(node => Console.Write($"{node.Value}({node.Index}) "));
+            }
         }
 
 
@@ -154,7 +166,7 @@ class Program
 
 
 
-
+/*
         string filePath = "C:\\Users\\karpo\\OneDrive\\Рабочий стол\\SAOD\\(2)Построение случайного дерева поиска и идеально сбалансированного\\ISDP_and_SDP\\CCode.txt";
 
         // Ключевые слова языка C
@@ -216,7 +228,7 @@ class Program
             tree.Add(key.Value);
         }
         tree.PrintTree();
-
+*/
     }
     static RandomBinaryTree GetRandomTwo(int n)
     {

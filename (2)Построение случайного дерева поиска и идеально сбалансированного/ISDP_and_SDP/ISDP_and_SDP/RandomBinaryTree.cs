@@ -271,6 +271,7 @@ namespace ISDP_and_SDP
         {
             if (node != null)
             {
+                
                 InOrderTraversalRecursive(node.Left, action);
                 action(node);
                 InOrderTraversalRecursive(node.Right, action);

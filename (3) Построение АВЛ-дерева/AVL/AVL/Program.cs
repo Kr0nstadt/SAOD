@@ -4,60 +4,97 @@ class Program
 {
     static void Main(string[] args)
     {
+        /*
         AVLTree avlTree = new AVLTree();
-
-        avlTree.Add(10);
-        avlTree.Add(20);
-        avlTree.Add(30);
-        avlTree.Add(40);
-        avlTree.Add(50);
-        avlTree.Add(25);
-
-        Console.WriteLine("AVL Tree:");
+        int[] array = GenerateRandArray(100);
+        avlTree.Add(array);
+        Console.WriteLine("Lab_5.Построение AVL дерева :\n\nДерево на 100 элементов :\nЭлементы и их высоты");
         avlTree.Print();
+        Console.WriteLine("\n\nЭлементы и нумерация");
+        avlTree.PrintTreeIndex();
+        Console.WriteLine("\n\nОбход слева направо : ");
+        avlTree.InOrderTraversalLeft();
+        Console.WriteLine("\n\nСверху вниз : ");
+        avlTree.InOrderTraversalApp();
+        Console.WriteLine("\n\nСнизу ввверх : ");
+        avlTree.InOrderTraversalDovn();
 
-        Console.WriteLine($"Высота дерева: {avlTree.Height()}");
-        Console.WriteLine($"Средняя высота: {avlTree.AverageHeight():F2}");
-        Console.WriteLine($"Количество поворотов: {avlTree.RotationCount}");
+        BalancedBinaryTree balTree = new BalancedBinaryTree();
+        balTree.Add(array);
 
-        Console.WriteLine("  N  | Высота дерева | Средняя высота | Теоритическая");
-        Console.WriteLine("--------------------------------------------------------------");
-        Console.WriteLine($" 10  |     {NHigth(10):F2}      |      {NAgHigth(10):F2}      | {Theor(10):F2}");
-        Console.WriteLine($" 50  |     {NHigth(50):F2}      |      {NAgHigth(50):F2}      | {Theor(50):F2}");
-        Console.WriteLine($" 100 |     {NHigth(100):F2}      |      {NAgHigth(100):F2}      | {Theor(100):F2}");
-        Console.WriteLine($" 200 |     {NHigth(200):F2}      |      {NAgHigth(200):F2}      | {Theor(200):F2}");
-        Console.WriteLine($" 400 |     {NHigth(400):F2}      |      {NAgHigth(400):F2}      | {Theor(400):F2}");
-        Console.WriteLine("\n");
-        Console.WriteLine("  N  | Количество поворотов при построении ");
-        Console.WriteLine("-------------------------------");
-        Console.WriteLine($" 10  | {PopaMtravia(10)}");
-        Console.WriteLine($" 50  | {PopaMtravia(50)}");
-        Console.WriteLine($" 100  | {PopaMtravia(100)}");
-        Console.WriteLine($" 200  | {PopaMtravia(200)}");
-        Console.WriteLine($" 400  | {PopaMtravia(400)}");
+
+        Console.WriteLine("\n\n\n__________________________________________________________");
+        Console.WriteLine(" n = 100 | Размер | Контр. сумма | Высота | Средн. высота |");
+        Console.WriteLine("__________________________________________________________");
+        Console.WriteLine($"   ИСДП  |  {balTree.Size()}   |     {balTree.Checksum()}     |   {balTree.Height()}    |      {balTree.AverageHeight():F2}     |");
+        Console.WriteLine("__________________________________________________________");
+        Console.WriteLine($"   АВЛ   |  {avlTree.Size()}   |     {avlTree.Checksum()}     |   {avlTree.Height()}    |      {avlTree.AverageHeight():F2}     |");
+        Console.WriteLine("__________________________________________________________");
+        */
+        Console.WriteLine("\n\n\nLab_6.Удаление из AVL");
+        const int CountExperement = 10;
+        int[] CountAdd = new int[CountExperement];
+        int[]CountDelete = new int[CountExperement];
+        for(int i = 0; i <  CountExperement; i++)
+        {
+            AVLTree treeExp = new AVLTree();
+            int[] arr = GenerateRandArray(500);
+            treeExp.Add(arr);
+            CountAdd[i] = treeExp.CountAdd;
+            Console.WriteLine(CountAdd[i]);
+            for(int k = 0; k < 500; k++)
+            {
+                treeExp.Delete(arr[k]);
+            }
+            CountDelete[i] = treeExp.CountDelete;
+            Console.WriteLine(CountDelete[i]);
+        }
+        Console.WriteLine($"Проверка на {CountExperement} деревьях из 500 элементов\n" +
+            $"Среднее количество поворотов при добавлении {CountAdd.Sum() / CountExperement} это вероятнось {(double)((double)((double)CountAdd.Sum() / (double)CountExperement)/500)}\n" +
+            $"Среднее количество поворотов при удалении {CountDelete.Sum() / CountExperement} это вероятнось {(double)((double)((double)CountDelete.Sum() / (double)CountExperement) / 500)}");
+        AVLTree tree = new AVLTree();
+        int[] NewInt = GenerateRandArray(25);
+        tree.Add(NewInt);
+        Console.WriteLine("\n\nДерево до удаления : ");
+        tree.Print();
+        string flag = "";
+        while (true)
+        {
+            flag = Console.ReadLine();
+            int val = 0;
+
+            try { val = Int32.Parse(flag); }
+            catch { break; }
+            if (NewInt.Contains(val) == false)
+            {
+                Console.WriteLine("Такого значения нет в дереве");
+            }
+            else
+            {
+                tree.Delete(val);
+                Console.WriteLine("Удаление вершины " + val);
+                tree.PrintTreeIndex();
+                tree.InOrderTraversalLeft();
+            }
+        }
     }
-    public static int PopaMtravia(int n)
+    static int[] GenerateRandArray(int n)
     {
-        AVLTree aVLTree = new AVLTree();
-        int bef = aVLTree.RotationCount;
-        aVLTree.GenerateRandomTree(n);
-        int aft = aVLTree.RotationCount;
-        return aft - bef;
+        int[] randArray = new int[n];
+        Random rand = new Random(); 
+        for(int i = 0; i < n; i++)
+        {
+            var val = rand.Next(1, n + 25);
+            if(!randArray.Contains(val))
+            {
+                randArray[i] = val;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        return randArray;
     }
-    public static int NHigth(int n)
-    {
-        AVLTree aVLTree = new AVLTree();
-        aVLTree.GenerateRandomTree(n);
-        return aVLTree.Height();
-    }
-    public static double NAgHigth(int n)
-    {
-        AVLTree aVLTree1 = new AVLTree();
-        aVLTree1.GenerateRandomTree(n);
-        return aVLTree1.AverageHeight();
-    }
-    public static double Theor(int n)
-    {
-        return 1.44 * Math.Log2(n + 2) - 0.328;
-    }
+
 }

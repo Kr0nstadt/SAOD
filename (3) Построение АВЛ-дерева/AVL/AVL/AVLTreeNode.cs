@@ -12,11 +12,13 @@ namespace AVL
         public AVLTreeNode Left;
         public AVLTreeNode Right;
         public int Height;
+        public int Index;
 
-        public AVLTreeNode(int key)
+        public AVLTreeNode(int key, int index)
         {
             Key = key;
-            Height = 1; // Начальная высота узла
+            Height = 0; // Начальная высота узла
+            Index = index;
         }
     }
 }
