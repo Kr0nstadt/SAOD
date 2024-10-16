@@ -92,16 +92,16 @@ namespace AVL
             if (balance > 1 && GetBalance(node.Left) < 0)
             {
                 _countDelete++;
-                node.Left = LeftRotate(node.Left);
-                return RightRotate(node);
+                node.Left = LL1(node.Left);
+                return RR1(node);
             }
 
             // Правый левый случай
             if (balance < -1 && GetBalance(node.Right) > 0)
             {
                 _countDelete++;
-                node.Right = RightRotate(node.Right);
-                return LeftRotate(node);
+                node.Right = RR1(node.Right);
+                return LL1(node);
             }
 
             return node;
