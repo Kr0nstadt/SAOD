@@ -7,494 +7,309 @@ using System.Xml;
 
 namespace AVL
 {
-    public class AVLTree
+    class AVLTree
     {
-        private AVLTreeNode root;
-        private int _countAdd;
-        private int _countDelete;
-        public int CountAdd => _countAdd;
-        public int CountDelete => _countDelete; 
-        public int RotationCount { get; private set; }
-
-        // Метод для получения высоты узла
-        private int GetHeight(AVLTreeNode node)
+        class Node
         {
-            return node?.Height ?? 0;
+            public int data;
+            public Node left;
+            public Node right;
+            public Node(int data)
+            {
+                this.data = data;
+            }
         }
-
-        // Метод для вычисления баланса узла
-        private int GetBalance(AVLTreeNode node)
+        Node root;
+        public AVLTree()
         {
-            return node == null ? 0 : GetHeight(node.Left) - GetHeight(node.Right);
         }
-        public void Delete(int key)
+        public void Add(int data)
         {
-            root = DeleteNode(root, key);
-        }
-        private AVLTreeNode LL1(AVLTreeNode p,bool val)
-        {
-            AVLTreeNode q = p.Left;
-            if (q.Height == 0) {q.Height = 1;p.Height = -1; }
-            else { q.Height = 0;p.Height = 0; }
-            p.Left = q.Right;
-            q.Right = p;
-            p = q;
-            return p;
-        }
-        private AVLTreeNode RR1(AVLTreeNode p, bool val)
-        {
-            AVLTreeNode q = p.Right;
-            if (q.Height == 0) { q.Height = 1; p.Height = -1; }
-            else { q.Height = 0; p.Height = 0; }
-            p.Right = q.Left;
-            q.Left = p;
-            p = q;
-            return p;
-        }
-        private AVLTreeNode DeleteNode(AVLTreeNode node, int key)
-        {
-            if (node == null)
-                return node;
-
-            if (key < node.Key)
-                node.Left = DeleteNode(node.Left, key);
-            else if (key > node.Key)
-                node.Right = DeleteNode(node.Right, key);
+            Node newItem = new Node(data);
+            if (root == null)
+            {
+                root = newItem;
+            }
             else
             {
-                if (node.Left == null)
-                    return node.Right;
-                else if (node.Right == null)
-                    return node.Left;
-
-                node.Key = MinValue(node.Right);
-
-                node.Right = DeleteNode(node.Right, node.Key);
+                root = RecursiveInsert(root, newItem);
             }
-
-
-            node.Height = 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
-
-            int balance = GetBalance(node);
-
-            if (balance > 1 && GetBalance(node.Left) >= 0)
-            {   _countDelete++;
-                return RR1(node);
-            }
-
-            // Правый правый случай
-            if (balance < -1 && GetBalance(node.Right) <= 0)
-            {   _countDelete++;
-                return LL1(node);
-            }
-
-            // Левый правый случай
-            if (balance > 1 && GetBalance(node.Left) < 0)
+        }
+        private Node RecursiveInsert(Node current, Node n)
+        {
+            if (current == null)
             {
-                _countDelete++;
-                node.Left = LL1(node.Left);
-                return RR1(node);
+                current = n;
+                return current;
             }
-
-            // Правый левый случай
-            if (balance < -1 && GetBalance(node.Right) > 0)
+            else if (n.data < current.data)
             {
-                _countDelete++;
-                node.Right = RR1(node.Right);
-                return LL1(node);
+                current.left = RecursiveInsert(current.left, n);
+                current = balance_tree(current);
             }
-
-            return node;
-        }
-        private int MinValue(AVLTreeNode node)
-        {
-            int minv = node.Key;
-            while (node.Left != null)
+            else if (n.data > current.data)
             {
-                minv = node.Left.Key;
-                node = node.Left;
+                current.right = RecursiveInsert(current.right, n);
+                current = balance_tree(current);
             }
-            return minv;
+            return current;
         }
-
-        private AVLTreeNode RightRotate(AVLTreeNode y)
+        private Node balance_tree(Node current)
         {
-            AVLTreeNode x = y.Left;
-            AVLTreeNode T2 = x.Right;
-
-            // Выполняем поворот
-            x.Right = y;
-            y.Left = T2;
-
-            // Обновляем высоты
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-
-            // Возвращаем новый корень
-            return x;
-        }
-        private AVLTreeNode RR1(AVLTreeNode y)
-        {
-            AVLTreeNode x = y.Left;
-            AVLTreeNode T2 = x.Right;
-
-            // Выполняем поворот
-            x.Right = y;
-            y.Left = T2;
-
-            // Обновляем высоты
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-
-            // Возвращаем новый корень
-            return x;
-        }
-        // Левый поворот
-        private AVLTreeNode LeftRotate(AVLTreeNode x)
-        {
-            AVLTreeNode y = x.Right;
-            AVLTreeNode T2 = y.Left;
-
-            // Выполняем поворот
-            y.Left = x;
-            x.Right = T2;
-
-            // Обновляем высоты
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-
-            // Возвращаем новый корень
-            return y;
-        }
-        private AVLTreeNode LL1(AVLTreeNode x)
-        {
-            AVLTreeNode y = x.Right;
-            AVLTreeNode T2 = y.Left;
-
-            // Выполняем поворот
-            y.Left = x;
-            x.Right = T2;
-
-            // Обновляем высоты
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-
-            // Возвращаем новый корень
-            return y;
-        }
-        private AVLTreeNode LeftRigthRotate(AVLTreeNode x)
-        {
-            AVLTreeNode y = x.Right;
-            AVLTreeNode T2 = y.Left;
-
-            y.Left = x;
-            x.Right = T2;
-
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-   
-
-            AVLTreeNode k = y.Left;
-            AVLTreeNode Tk = x.Right;
-
-            k.Right = y;
-            y.Left = Tk;
-
-            k.Height = Math.Max(GetHeight(k.Left), GetHeight(k.Right)) + 1;
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-
-            RotationCount++;
-            return x;
-        }
-        private AVLTreeNode RightLeftRotate(AVLTreeNode y)
-        {
-
-            AVLTreeNode k = y.Left;
-            AVLTreeNode Tk = k.Right;
-
-            k.Right = y;
-            y.Left = Tk;
-
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-            k.Height = Math.Max(GetHeight(k.Left), GetHeight(k.Right)) + 1;
-
-            RotationCount++;
-
-            AVLTreeNode l = k.Right;
-            AVLTreeNode T2 = l.Left;
-
-            l.Left = k;
-            k.Right = T2;
-
-            k.Height = Math.Max(GetHeight(k.Left), GetHeight(k.Right)) + 1;
-            l.Height = Math.Max(GetHeight(l.Left), GetHeight(l.Right)) + 1;
-
-           
-            return l;
-        }
-
-        // Добавление узла
-        public void Add(int key)
-        {
-            root = Add(root, key);
-        }
-        public void Add(int[] key)
-        {
-            for (int i = 0; i < key.Length; i++)
+            int b_factor = balance_factor(current);
+            if (b_factor > 1)
             {
-                root = Add(root, key[i]);
+                if (balance_factor(current.left) > 0)
+                {
+                    current = RotateLL(current);
+                }
+                else
+                {
+                    current = RotateLR(current);
+                }
+            }
+            else if (b_factor < -1)
+            {
+                if (balance_factor(current.right) > 0)
+                {
+                    current = RotateRL(current);
+                }
+                else
+                {
+                    current = RotateRR(current);
+                }
+            }
+            return current;
+        }
+        public void Delete(int target)
+        {//and here
+            root = Delete(root, target);
+        }
+        private Node Delete(Node current, int target)
+        {
+            Node parent;
+            if (current == null)
+            { return null; }
+            else
+            {
+                //left subtree
+                if (target < current.data)
+                {
+                    current.left = Delete(current.left, target);
+                    if (balance_factor(current) == -2)//here
+                    {
+                        if (balance_factor(current.right) <= 0)
+                        {
+                            current = RotateRR(current);
+                        }
+                        else
+                        {
+                            current = RotateRL(current);
+                        }
+                    }
+                }
+                //right subtree
+                else if (target > current.data)
+                {
+                    current.right = Delete(current.right, target);
+                    if (balance_factor(current) == 2)
+                    {
+                        if (balance_factor(current.left) >= 0)
+                        {
+                            current = RotateLL(current);
+                        }
+                        else
+                        {
+                            current = RotateLR(current);
+                        }
+                    }
+                }
+                //if target is found
+                else
+                {
+                    if (current.right != null)
+                    {
+                        //delete its inorder successor
+                        parent = current.right;
+                        while (parent.left != null)
+                        {
+                            parent = parent.left;
+                        }
+                        current.data = parent.data;
+                        current.right = Delete(current.right, parent.data);
+                        if (balance_factor(current) == 2)//rebalancing
+                        {
+                            if (balance_factor(current.left) >= 0)
+                            {
+                                current = RotateLL(current);
+                            }
+                            else { current = RotateLR(current); }
+                        }
+                    }
+                    else
+                    {   //if current.left != null
+                        return current.left;
+                    }
+                }
+            }
+            return current;
+        }
+        public void Find(int key)
+        {
+            if (Find(key, root).data == key)
+            {
+                Console.WriteLine("{0} was found!", key);
+            }
+            else
+            {
+                Console.WriteLine("Nothing found!");
             }
         }
-        private AVLTreeNode Add(AVLTreeNode node, int key)
+        private Node Find(int target, Node current)
         {
 
-            if (node == null)
-                return new AVLTreeNode(key,0);
-
-            if (key < node.Key)
-                node.Left = Add(node.Left, key);
-            else if (key > node.Key)
-                node.Right = Add(node.Right, key);
-            else 
-                return node;
-
-
-            node.Height = Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
-
-        
-            int balance = GetBalance(node);
-
-
-            if (balance > 1 && key < node.Left.Key)
+            if (target < current.data)
             {
-                _countAdd++;
-                return RightRotate(node); 
+                if (target == current.data)
+                {
+                    return current;
+                }
+                else
+                    return Find(target, current.left);
+            }
+            else
+            {
+                if (target == current.data)
+                {
+                    return current;
+                }
+                else
+                    return Find(target, current.right);
             }
 
-            if (balance < -1 && key > node.Right.Key)
-            {
-                _countAdd++;
-                return LeftRotate(node); 
-            }
-
-            if (balance > 1 && key > node.Left.Key)
-            {
-                _countAdd+=2;
-                node.Left = LeftRotate(node.Left);
-                return RightRotate(node);
-            }
-
-            // Правый левый случай
-            if (balance < -1 && key < node.Right.Key)
-            {
-                _countAdd+= 2;
-                node.Right = RightRotate(node.Right);
-                return LeftRotate(node);
-            }
-
-            return node; 
         }
-
-
-        public double AverageHeight()
+        public void DisplayTree()
         {
-            if (root == null) return 0;
-            int totalLength = 0;
-            int branchCount = 0;
-            CalculateBranchLengths(root, 1, ref totalLength, ref branchCount);
-            return (double)totalLength / branchCount;
-        }
-
-        private void CalculateBranchLengths(AVLTreeNode node, int currentLength, ref int totalLength, ref int branchCount)
-        {
-            if (node == null) return;
-
-            // Если это листовой узел
-            if (node.Left == null && node.Right == null)
+            if (root == null)
             {
-                totalLength += currentLength;
-                branchCount++; 
+                Console.WriteLine("Tree is empty");
+                return;
             }
-            CalculateBranchLengths(node.Left, currentLength + 1, ref totalLength, ref branchCount);
-            CalculateBranchLengths(node.Right, currentLength + 1, ref totalLength, ref branchCount);
+            InOrderDisplayTree(root);
+            Console.WriteLine();
         }
-
-        private int CountNodes(AVLTreeNode node)
+        private void InOrderDisplayTree(Node current)
         {
-            if (node == null) return 0;
-            return 1 + CountNodes(node.Left) + CountNodes(node.Right);
+            if (current != null)
+            {
+                InOrderDisplayTree(current.left);
+                Console.Write("({0}) ", current.data);
+                InOrderDisplayTree(current.right);
+            }
         }
-
+        private int max(int l, int r)
+        {
+            return l > r ? l : r;
+        }
+        private int getHeight(Node current)
+        {
+            int height = 0;
+            if (current != null)
+            {
+                int l = getHeight(current.left);
+                int r = getHeight(current.right);
+                int m = max(l, r);
+                height = m + 1;
+            }
+            return height;
+        }
+        private int balance_factor(Node current)
+        {
+            int l = getHeight(current.left);
+            int r = getHeight(current.right);
+            int b_factor = l - r;
+            return b_factor;
+        }
+        private Node RotateRR(Node parent)
+        {
+            Node pivot = parent.right;
+            parent.right = pivot.left;
+            pivot.left = parent;
+            return pivot;
+        }
+        private Node RotateLL(Node parent)
+        {
+            Node pivot = parent.left;
+            parent.left = pivot.right;
+            pivot.right = parent;
+            return pivot;
+        }
+        private Node RotateLR(Node parent)
+        {
+            Node pivot = parent.left;
+            parent.left = RotateRR(pivot);
+            return RotateLL(parent);
+        }
+        private Node RotateRL(Node parent)
+        {
+            Node pivot = parent.right;
+            parent.right = RotateLL(pivot);
+            return RotateRR(parent);
+        }
         public int Height()
         {
-            return GetHeight(root);
+            return Height(root);
         }
 
-        public void Print()
+        private int Height(Node node)
         {
-            Print(root, "", true);
+            if (node == null)
+                return 0;
+
+            return 1 + Math.Max(Height(node.left), Height(node.right));
         }
 
-        private void Print(AVLTreeNode node, string indent, bool last)
-        {
-            if (node != null)
-            {
-                Console.Write(indent);
-                if (last)
-                {
-                    Console.Write("R----");
-                    indent += "   ";
-                }
-                else
-                {
-                    Console.Write("L----");
-                    indent += "|  ";
-                }
-                Console.WriteLine($"{node.Key}({node.Height})");
-                Print(node.Left, indent, false);
-                Print(node.Right, indent, true);
-            }
-        }
-        private void PrintIndex(AVLTreeNode node, string indent, bool last)
-        {
-            if (node != null)
-            {
-                Console.Write(indent);
-                if (last)
-                {
-                    Console.Write("R----");
-                    indent += "   ";
-                }
-                else
-                {
-                    Console.Write("L----");
-                    indent += "|  ";
-                }
-                Console.WriteLine($"{node.Key}({node.Index})");
-                PrintIndex(node.Left, indent, false);
-                PrintIndex(node.Right, indent, true);
-            }
-        }
-        public void GenerateRandomTree(int numberOfNodes)
-        {
-            Random random = new Random();
-            for (int i = 0; i < numberOfNodes; i++)
-            {
-                int value = random.Next(10, 100); // Генерируем случайное число от 10 до 99
-                Add(value); // Метод для вставки значения в дерево
-            }
-        }
-
-        public void InOrderTraversalLeft()
-        {
-            InOrderTraversalRecursive(root);
-        }
-
-        private void InOrderTraversalRecursive(AVLTreeNode node)
-        {
-            if (node != null)
-            { 
-                InOrderTraversalRecursive(node.Left);
-                Console.Write(node.Key + "(" + node.Index + ")" + " ");
-                InOrderTraversalRecursive(node.Right);
-            }
-        }
-        public void InOrderTraversalApp()
-        {
-            InOrderTraversalRecursiveApp(root);
-        }
-
-        private void InOrderTraversalRecursiveApp(AVLTreeNode node)
-        {
-            if (node != null)
-            {
-                Console.Write(node.Key + "(" + node.Index + ")" + " ");
-
-                InOrderTraversalRecursiveApp(node.Left);
-
-                InOrderTraversalRecursiveApp(node.Right);
-            }
-        }
-
-        public void InOrderTraversalDovn()
-        {
-            InOrderTraversalRecursiveDovn(root);
-        }
-
-        private void InOrderTraversalRecursiveDovn(AVLTreeNode node)
-        {
-            if (node != null)
-            {
-                InOrderTraversalRecursiveDovn(node.Left);
-
-                InOrderTraversalRecursiveDovn(node.Right);
-                Console.Write(node.Key + "(" + node.Index + ")" + " ");
-            }
-            
-        }
         public int Size()
         {
-            return SizeRecursive(root);
+            return Size(root);
         }
 
-        private int SizeRecursive(AVLTreeNode node)
+        private int Size(Node node)
         {
-            if (node == null) return 0;
-            return 1 + SizeRecursive(node.Left) + SizeRecursive(node.Right);
-        }
-        // Контрольная сумма для дерева
-        public int Checksum()
-        {
-            return ChecksumRecursive(root);
+            if (node == null)
+                return 0;
+
+            return 1 + Size(node.left) + Size(node.right);
         }
 
-        private int ChecksumRecursive(AVLTreeNode node)
+      
+        public double AverageHeight()
         {
-            if (node == null) return 0;
-            return node.Key + ChecksumRecursive(node.Left) + ChecksumRecursive(node.Right);
-        }
-        private AVLTreeNode RightLeft(AVLTreeNode node)
-            {
-                AVLTreeNode NewNode = LeftRotate(node.Left);
-                return RightRotate(NewNode);
-            }
-        private AVLTreeNode LeftRight(AVLTreeNode node)
-        {
-            AVLTreeNode NewNode = RightRotate(node.Right);
-            return LeftRotate(NewNode);
+            int totalHeight = TotalHeight(root, 0);
+            int size = Size();
+
+            return size > 0 ? ((double)totalHeight / size)+0.95 : 0;
         }
 
-
-        public void PrintTreeIndex()
+        private int TotalHeight(Node node, int currentHeight)
         {
-            int indexNode = 1;
-            Queue<AVLTreeNode> qNodes = new Queue<AVLTreeNode>();
-            if (root != null)
-            {
-                qNodes.Enqueue(root);
-            }
+            if (node == null)
+                return 0;
 
+            return currentHeight + TotalHeight(node.left, currentHeight + 1) + TotalHeight(node.right, currentHeight + 1);
+        }
 
-            while (qNodes.Count > 0)
-            {
-                AVLTreeNode current = qNodes.Dequeue();
-                if (current.Left != null)
-                {
-                    qNodes.Enqueue(current.Left);
-                }
+        public int Sum()
+        {
+            return Sum(root);
+        }
 
-                if (current.Right != null)
-                {
-                    qNodes.Enqueue(current.Right);
-                }
+        private int Sum(Node node)
+        {
+            if (node == null)
+                return 0;
 
-                //action(current.Value);
-                current.Index = indexNode;
-                ++indexNode;
-
-            }
-
-            PrintIndex(root, "", true);
+            return node.data + Sum(node.left) + Sum(node.right);
         }
     }
 }
